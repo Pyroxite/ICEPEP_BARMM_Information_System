@@ -1113,6 +1113,47 @@ namespace InformationManagementSystem
                     MessageBox.Show("Failed to load students list " + ex.Message);
                 }
             }
+            else if (cbxProfessionalFilter.Text == "Transferee")
+            {
+                try
+                {
+                    dgvProfessionals.Rows.Clear();
+                    var rowIndex = 0;
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName AND tbl_ProfessionalInformation.ProfessionalIsTransferee=@ProfessionalIsTransferee";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(selectQuary, _connection);
+                    _command.Parameters.AddWithValue("@ProfessionalFirstName", tbxProfessionalSearch.Text + "%");
+                    _command.Parameters.AddWithValue("@ProfessionalIsTransferee", "Yes");
+                    _reader = _command.ExecuteReader();
+
+                    while (_reader.Read())
+                    {
+                        rowIndex++;
+                        dgvProfessionals.Rows.Add(rowIndex,
+                            _reader["ProfessionalID"].ToString(),
+                            _reader["ProfessionalFirstName"].ToString(),
+                            _reader["ProfessionalLastName"].ToString(),
+                            _reader["ProfessionalStatus"].ToString(),
+                            _reader["ProfessionalValidUntil"].ToString(),
+                            _reader["ProfessionalJobTitle"].ToString(),
+                            _reader["ProfessionalDegree"].ToString(),
+                            _reader["ProfessionalContactNumber"].ToString(),
+                            _reader["ProfessionalEmailAddress"].ToString(),
+                            _reader["ProfessionalPresentAddress"].ToString(),
+                            _reader["ProfessionalSpecialization"].ToString(),
+                            _reader["ProfessionalDateSigned"].ToString(),
+                            _reader["ProfessionalIsActive"].ToString(),
+                            _reader["ProfessionalIsTransferee"].ToString());
+                    }
+                    _connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load students list " + ex.Message);
+                }
+            }
         }
         private void btnProfessionalClearFilter_Click(object sender, EventArgs e)
         {
