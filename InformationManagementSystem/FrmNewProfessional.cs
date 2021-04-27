@@ -11,15 +11,25 @@ namespace InformationManagementSystem
         private readonly OleDbConnection _connection = new OleDbConnection();
         private OleDbCommand _command = new OleDbCommand();
         private readonly FrmMain _main;
+        private AutoIncrementID _autoIncrement = new AutoIncrementID();
 
         public FrmNewProfessional(FrmMain main)
         {
             InitializeComponent();
             _connection.ConnectionString = DatabaseConnection.GetConnection();
             LockDateTime();
+            AutoIncrementProfessioanlID();
             _main = main;
             lblProfessionalDateID.Text = DateTime.Now.ToString("yyyy");
             tbxProfessionalRegionChapter.Text = "BARMM";
+        }
+
+        private void AutoIncrementProfessioanlID()
+        {
+            var query = "SELECT tbl_ProfessionalInformation.ProfessionalID FROM tbl_ProfessionalInformation";
+            var queryID = "ProfessionalID";
+            _autoIncrement.Increment(tbxProfessionalID, query, queryID);
+            _autoIncrement.GetIncrementedID(tbxProfessionalID.Text);
         }
 
         private void AddImage()
@@ -228,13 +238,13 @@ namespace InformationManagementSystem
 
                     //Status
                     if (chxProfessionalRegularMemberOneYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Regular One Year");
+                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Regular");
                     else if (chxProfessionalRegularMemberThreeYears.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Regular Three Year");
+                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Regular");
                     else if (chxProfessionalAsscociateMemberOneYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Associate One Year");
+                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Associate");
                     else if (chxProfessionalAsscociateMemberThreeYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Associate Three Year");
+                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Associate");
                     else if (chxProfessionalLifetime.Checked == true)
                         _command.Parameters.AddWithValue("@ProfessionalStatus", "Lifetime");
 

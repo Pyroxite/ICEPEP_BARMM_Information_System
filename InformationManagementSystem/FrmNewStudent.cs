@@ -12,6 +12,7 @@ namespace InformationManagementSystem
         private OleDbCommand _command = new OleDbCommand();
         private OleDbDataReader _reader;
         private readonly FrmMain _main;
+        private AutoIncrementID _autoIncrement = new AutoIncrementID();
 
         public FrmNewStudent(FrmMain main)
         {
@@ -23,8 +24,17 @@ namespace InformationManagementSystem
             LoadSeniorHigh();
             LoadCourse();
             LoadYearLevel();
+            AutoIncrementStudentID();
             lblStudentDateID.Text = DateTime.Now.ToString("yyyy");
             tbxStudentRegionChapter.Text = "BARMM";
+        }
+
+        private void AutoIncrementStudentID()
+        {
+            var query = "SELECT tbl_StudentInformation.StudentID FROM tbl_StudentInformation";
+            var queryID = "StudentID";
+            _autoIncrement.Increment(tbxStudentID, query, queryID);
+            _autoIncrement.GetIncrementedID(tbxStudentID.Text);
         }
 
         public void BackupDataBase()

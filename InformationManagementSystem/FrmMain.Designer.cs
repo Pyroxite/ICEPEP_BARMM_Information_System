@@ -29,11 +29,11 @@ namespace InformationManagementSystem
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpStudents = new System.Windows.Forms.TabPage();
             this.scnMain = new System.Windows.Forms.SplitContainer();
@@ -120,6 +120,7 @@ namespace InformationManagementSystem
             this.tbxProfessionalBasicID = new System.Windows.Forms.TextBox();
             this.btnProfessionalBasicViewFull = new System.Windows.Forms.Button();
             this.pbxProfessionalBasicPicture = new System.Windows.Forms.PictureBox();
+            this.cbxProfessionalFilter = new System.Windows.Forms.ComboBox();
             this.btnProfessionalClearFilter = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.dgvProfessionals = new System.Windows.Forms.DataGridView();
@@ -141,7 +142,6 @@ namespace InformationManagementSystem
             this.panel5 = new System.Windows.Forms.Panel();
             this.label30 = new System.Windows.Forms.Label();
             this.tbxProfessionalSearch = new System.Windows.Forms.TextBox();
-            this.cbxProfessionalFilter = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.tspMain = new System.Windows.Forms.ToolStrip();
@@ -619,14 +619,14 @@ namespace InformationManagementSystem
             this.dgvStudents.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -645,14 +645,14 @@ namespace InformationManagementSystem
             this.Column7,
             this.studentIsTransferee});
             this.dgvStudents.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStudents.EnableHeadersVisualStyles = false;
             this.dgvStudents.Location = new System.Drawing.Point(16, 46);
             this.dgvStudents.Name = "dgvStudents";
@@ -863,12 +863,12 @@ namespace InformationManagementSystem
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.cbxProfessionalFilter);
             this.splitContainer1.Panel2.Controls.Add(this.btnProfessionalClearFilter);
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox5);
             this.splitContainer1.Panel2.Controls.Add(this.dgvProfessionals);
             this.splitContainer1.Panel2.Controls.Add(this.panel5);
             this.splitContainer1.Panel2.Controls.Add(this.tbxProfessionalSearch);
-            this.splitContainer1.Panel2.Controls.Add(this.cbxProfessionalFilter);
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox4);
             this.splitContainer1.Size = new System.Drawing.Size(1250, 594);
             this.splitContainer1.SplitterDistance = 325;
@@ -1157,6 +1157,22 @@ namespace InformationManagementSystem
             this.pbxProfessionalBasicPicture.TabIndex = 4;
             this.pbxProfessionalBasicPicture.TabStop = false;
             // 
+            // cbxProfessionalFilter
+            // 
+            this.cbxProfessionalFilter.FormattingEnabled = true;
+            this.cbxProfessionalFilter.Items.AddRange(new object[] {
+            "Regular One Year",
+            "Regular Three Year",
+            "Associate One Year",
+            "Associate Three Year",
+            "Lifetime",
+            "Transferee"});
+            this.cbxProfessionalFilter.Location = new System.Drawing.Point(621, 14);
+            this.cbxProfessionalFilter.Name = "cbxProfessionalFilter";
+            this.cbxProfessionalFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbxProfessionalFilter.TabIndex = 172;
+            this.cbxProfessionalFilter.SelectedIndexChanged += new System.EventHandler(this.cbxProfessionalFilter_SelectedIndexChanged);
+            // 
             // btnProfessionalClearFilter
             // 
             this.btnProfessionalClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1189,14 +1205,14 @@ namespace InformationManagementSystem
             this.dgvProfessionals.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvProfessionals.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvProfessionals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProfessionals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProfessionals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProfessionals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvProfessionals.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1215,14 +1231,14 @@ namespace InformationManagementSystem
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15});
             this.dgvProfessionals.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProfessionals.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProfessionals.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvProfessionals.EnableHeadersVisualStyles = false;
             this.dgvProfessionals.Location = new System.Drawing.Point(16, 46);
             this.dgvProfessionals.Name = "dgvProfessionals";
@@ -1377,20 +1393,6 @@ namespace InformationManagementSystem
             this.tbxProfessionalSearch.Size = new System.Drawing.Size(125, 22);
             this.tbxProfessionalSearch.TabIndex = 2;
             this.tbxProfessionalSearch.TextChanged += new System.EventHandler(this.tbxProfessionalSearch_TextChanged);
-            // 
-            // cbxProfessionalFilter
-            // 
-            this.cbxProfessionalFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxProfessionalFilter.FormattingEnabled = true;
-            this.cbxProfessionalFilter.Items.AddRange(new object[] {
-            "Regular",
-            "Associate",
-            "Transferee"});
-            this.cbxProfessionalFilter.Location = new System.Drawing.Point(621, 14);
-            this.cbxProfessionalFilter.Name = "cbxProfessionalFilter";
-            this.cbxProfessionalFilter.Size = new System.Drawing.Size(125, 21);
-            this.cbxProfessionalFilter.TabIndex = 165;
-            this.cbxProfessionalFilter.SelectedIndexChanged += new System.EventHandler(this.cbxProfessionalFilter_SelectedIndexChanged);
             // 
             // pictureBox4
             // 
@@ -1826,7 +1828,6 @@ namespace InformationManagementSystem
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox tbxProfessionalSearch;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.ComboBox cbxProfessionalFilter;
         private System.Windows.Forms.Button btnStudentBasicDelete;
         private System.Windows.Forms.Button btnStudentBasicEdit;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
@@ -1863,6 +1864,7 @@ namespace InformationManagementSystem
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.Button btnProfessionalClearFilter;
+        private System.Windows.Forms.ComboBox cbxProfessionalFilter;
     }
 }
 
