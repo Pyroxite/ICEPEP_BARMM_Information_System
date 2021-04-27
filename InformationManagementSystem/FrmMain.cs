@@ -154,7 +154,7 @@ namespace InformationManagementSystem
             {
                 dgvStudents.Rows.Clear();
                 var rowIndex = 0;
-                var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation";
+                var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation ORDER BY tbl_StudentInformation.StudentID";
 
                 _connection.Open();
                 _command.Connection = _connection;
@@ -792,7 +792,7 @@ namespace InformationManagementSystem
             {
                 dgvProfessionals.Rows.Clear();
                 var rowIndex = 0;
-                var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation";
+                var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation ORDER BY tbl_ProfessionalInformation.ProfessionalID";
 
                 _connection.Open();
                 _command.Connection = _connection;
@@ -904,11 +904,11 @@ namespace InformationManagementSystem
                 newProfessional.tbxProfessionalSpecializations.Enabled = false;
                 newProfessional.cbxProfessionalDegree.Enabled = false;
                 newProfessional.dtpProfessionalYearGraduated.Enabled = false;
-                newProfessional.chxProfessionalRegularMemberOneYear.Enabled = false;
-                newProfessional.chxProfessionalRegularMemberThreeYears.Enabled = false;
-                newProfessional.chxProfessionalAsscociateMemberOneYear.Enabled = false;
-                newProfessional.chxProfessionalAsscociateMemberThreeYear.Enabled = false;
-                newProfessional.chxProfessionalLifetime.Enabled = false;
+                newProfessional.chxProfessionalRegularOneYear.Enabled = false;
+                newProfessional.chxProfessionalRegularThreeYears.Enabled = false;
+                newProfessional.chxProfessionalAsscociateOneYear.Enabled = false;
+                newProfessional.chxProfessionalAsscociateThreeYear.Enabled = false;
+                newProfessional.chxProfessionalRegularLifetime.Enabled = false;
                 newProfessional.btnProfessionalDegree.Enabled = false;
                 newProfessional.btnProfessionalSchool.Enabled = false;
                 newProfessional.btnProfessionalSave.Enabled = false;
@@ -952,15 +952,15 @@ namespace InformationManagementSystem
                         newProfessional.dtpProfessionalDateSigned.Text = _reader["ProfessionalDateSigned"].ToString();
 
                         if (_reader["ProfessionalStatus"].ToString() == "Regular One Year")
-                            newProfessional.chxProfessionalRegularMemberOneYear.Checked = true;
+                            newProfessional.chxProfessionalRegularOneYear.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Regular Three Year")
-                            newProfessional.chxProfessionalRegularMemberThreeYears.Checked = true;
+                            newProfessional.chxProfessionalRegularThreeYears.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Associate One Year")
-                            newProfessional.chxProfessionalAsscociateMemberOneYear.Checked = true;
+                            newProfessional.chxProfessionalAsscociateOneYear.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Associate Three Year")
-                            newProfessional.chxProfessionalAsscociateMemberThreeYear.Checked = true;
+                            newProfessional.chxProfessionalAsscociateThreeYear.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Lifetime")
-                            newProfessional.chxProfessionalLifetime.Checked = true;
+                            newProfessional.chxProfessionalRegularLifetime.Checked = true;
 
                         if (_reader["ProfessionalIsTransferee"].ToString() == "Yes")
                             newProfessional.chxProfessionalTransferee.Checked = true;
@@ -1033,15 +1033,15 @@ namespace InformationManagementSystem
                         newProfessional.dtpProfessionalDateSigned.Text = _reader["ProfessionalDateSigned"].ToString();
 
                         if (_reader["ProfessionalStatus"].ToString() == "Regular One Year")
-                            newProfessional.chxProfessionalRegularMemberOneYear.Checked = true;
+                            newProfessional.chxProfessionalRegularOneYear.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Regular Three Year")
-                            newProfessional.chxProfessionalRegularMemberThreeYears.Checked = true;
+                            newProfessional.chxProfessionalRegularThreeYears.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Associate One Year")
-                            newProfessional.chxProfessionalAsscociateMemberOneYear.Checked = true;
+                            newProfessional.chxProfessionalAsscociateOneYear.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Associate Three Year")
-                            newProfessional.chxProfessionalAsscociateMemberThreeYear.Checked = true;
+                            newProfessional.chxProfessionalAsscociateThreeYear.Checked = true;
                         else if (_reader["ProfessionalStatus"].ToString() == "Lifetime")
-                            newProfessional.chxProfessionalLifetime.Checked = true;
+                            newProfessional.chxProfessionalRegularLifetime.Checked = true;
 
                         if (_reader["ProfessionalIsTransferee"].ToString() == "Yes")
                             newProfessional.chxProfessionalTransferee.Checked = true;

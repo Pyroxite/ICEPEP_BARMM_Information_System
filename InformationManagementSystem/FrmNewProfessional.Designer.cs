@@ -31,11 +31,11 @@ namespace InformationManagementSystem
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewProfessional));
             this.label25 = new System.Windows.Forms.Label();
-            this.chxProfessionalLifetime = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalRegularLifetime = new System.Windows.Forms.CheckBox();
             this.btnProfessionalSave = new System.Windows.Forms.Button();
             this.btnProfessioanlCancel = new System.Windows.Forms.Button();
-            this.chxProfessionalAsscociateMemberOneYear = new System.Windows.Forms.CheckBox();
-            this.chxProfessionalRegularMemberOneYear = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalAsscociateOneYear = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalRegularOneYear = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -73,8 +73,8 @@ namespace InformationManagementSystem
             this.tbxProfessionalFirstName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pbxProfessionalPicture = new System.Windows.Forms.PictureBox();
-            this.chxProfessionalAsscociateMemberThreeYear = new System.Windows.Forms.CheckBox();
-            this.chxProfessionalRegularMemberThreeYears = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalAsscociateThreeYear = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalRegularThreeYears = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblProfessionalIndentTwo = new System.Windows.Forms.Label();
             this.lblProfessionalIndentOne = new System.Windows.Forms.Label();
@@ -93,9 +93,9 @@ namespace InformationManagementSystem
             this.btnProfessionalDegree = new System.Windows.Forms.Button();
             this.cbxProfessionalSchool = new System.Windows.Forms.ComboBox();
             this.cbxProfessionalDegree = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalAssociate = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalRegular = new System.Windows.Forms.CheckBox();
+            this.chxProfessionalAsscociateLifetime = new System.Windows.Forms.CheckBox();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -115,18 +115,18 @@ namespace InformationManagementSystem
             this.label25.TabIndex = 201;
             this.label25.Text = "Date Signed (Required):";
             // 
-            // chxProfessionalLifetime
+            // chxProfessionalRegularLifetime
             // 
-            this.chxProfessionalLifetime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chxProfessionalRegularLifetime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chxProfessionalLifetime.AutoSize = true;
-            this.chxProfessionalLifetime.Location = new System.Drawing.Point(143, 605);
-            this.chxProfessionalLifetime.Name = "chxProfessionalLifetime";
-            this.chxProfessionalLifetime.Size = new System.Drawing.Size(68, 17);
-            this.chxProfessionalLifetime.TabIndex = 199;
-            this.chxProfessionalLifetime.Text = "Lifetime";
-            this.chxProfessionalLifetime.UseVisualStyleBackColor = true;
-            this.chxProfessionalLifetime.CheckedChanged += new System.EventHandler(this.chxProfessionalLifetime_CheckedChanged);
+            this.chxProfessionalRegularLifetime.AutoSize = true;
+            this.chxProfessionalRegularLifetime.Location = new System.Drawing.Point(143, 605);
+            this.chxProfessionalRegularLifetime.Name = "chxProfessionalRegularLifetime";
+            this.chxProfessionalRegularLifetime.Size = new System.Drawing.Size(68, 17);
+            this.chxProfessionalRegularLifetime.TabIndex = 199;
+            this.chxProfessionalRegularLifetime.Text = "Lifetime";
+            this.chxProfessionalRegularLifetime.UseVisualStyleBackColor = true;
+            this.chxProfessionalRegularLifetime.CheckedChanged += new System.EventHandler(this.chxProfessionalLifetime_CheckedChanged);
             // 
             // btnProfessionalSave
             // 
@@ -151,31 +151,31 @@ namespace InformationManagementSystem
             this.btnProfessioanlCancel.Text = "Cancel";
             this.btnProfessioanlCancel.UseVisualStyleBackColor = true;
             // 
-            // chxProfessionalAsscociateMemberOneYear
+            // chxProfessionalAsscociateOneYear
             // 
-            this.chxProfessionalAsscociateMemberOneYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chxProfessionalAsscociateOneYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chxProfessionalAsscociateMemberOneYear.AutoSize = true;
-            this.chxProfessionalAsscociateMemberOneYear.Location = new System.Drawing.Point(251, 605);
-            this.chxProfessionalAsscociateMemberOneYear.Name = "chxProfessionalAsscociateMemberOneYear";
-            this.chxProfessionalAsscociateMemberOneYear.Size = new System.Drawing.Size(57, 17);
-            this.chxProfessionalAsscociateMemberOneYear.TabIndex = 154;
-            this.chxProfessionalAsscociateMemberOneYear.Text = "1 Year";
-            this.chxProfessionalAsscociateMemberOneYear.UseVisualStyleBackColor = true;
-            this.chxProfessionalAsscociateMemberOneYear.CheckedChanged += new System.EventHandler(this.chxProfessionalAsscociateMemberOneYear_CheckedChanged);
+            this.chxProfessionalAsscociateOneYear.AutoSize = true;
+            this.chxProfessionalAsscociateOneYear.Location = new System.Drawing.Point(251, 605);
+            this.chxProfessionalAsscociateOneYear.Name = "chxProfessionalAsscociateOneYear";
+            this.chxProfessionalAsscociateOneYear.Size = new System.Drawing.Size(57, 17);
+            this.chxProfessionalAsscociateOneYear.TabIndex = 154;
+            this.chxProfessionalAsscociateOneYear.Text = "1 Year";
+            this.chxProfessionalAsscociateOneYear.UseVisualStyleBackColor = true;
+            this.chxProfessionalAsscociateOneYear.CheckedChanged += new System.EventHandler(this.chxProfessionalAsscociateMemberOneYear_CheckedChanged);
             // 
-            // chxProfessionalRegularMemberOneYear
+            // chxProfessionalRegularOneYear
             // 
-            this.chxProfessionalRegularMemberOneYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chxProfessionalRegularOneYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chxProfessionalRegularMemberOneYear.AutoSize = true;
-            this.chxProfessionalRegularMemberOneYear.Location = new System.Drawing.Point(12, 605);
-            this.chxProfessionalRegularMemberOneYear.Name = "chxProfessionalRegularMemberOneYear";
-            this.chxProfessionalRegularMemberOneYear.Size = new System.Drawing.Size(57, 17);
-            this.chxProfessionalRegularMemberOneYear.TabIndex = 153;
-            this.chxProfessionalRegularMemberOneYear.Text = "1 Year";
-            this.chxProfessionalRegularMemberOneYear.UseVisualStyleBackColor = true;
-            this.chxProfessionalRegularMemberOneYear.CheckedChanged += new System.EventHandler(this.chxProfessionalRegularMemberOneYear_CheckedChanged);
+            this.chxProfessionalRegularOneYear.AutoSize = true;
+            this.chxProfessionalRegularOneYear.Location = new System.Drawing.Point(12, 605);
+            this.chxProfessionalRegularOneYear.Name = "chxProfessionalRegularOneYear";
+            this.chxProfessionalRegularOneYear.Size = new System.Drawing.Size(57, 17);
+            this.chxProfessionalRegularOneYear.TabIndex = 153;
+            this.chxProfessionalRegularOneYear.Text = "1 Year";
+            this.chxProfessionalRegularOneYear.UseVisualStyleBackColor = true;
+            this.chxProfessionalRegularOneYear.CheckedChanged += new System.EventHandler(this.chxProfessionalRegularMemberOneYear_CheckedChanged);
             // 
             // panel4
             // 
@@ -509,31 +509,31 @@ namespace InformationManagementSystem
             this.pbxProfessionalPicture.TabIndex = 155;
             this.pbxProfessionalPicture.TabStop = false;
             // 
-            // chxProfessionalAsscociateMemberThreeYear
+            // chxProfessionalAsscociateThreeYear
             // 
-            this.chxProfessionalAsscociateMemberThreeYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chxProfessionalAsscociateThreeYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chxProfessionalAsscociateMemberThreeYear.AutoSize = true;
-            this.chxProfessionalAsscociateMemberThreeYear.Location = new System.Drawing.Point(314, 605);
-            this.chxProfessionalAsscociateMemberThreeYear.Name = "chxProfessionalAsscociateMemberThreeYear";
-            this.chxProfessionalAsscociateMemberThreeYear.Size = new System.Drawing.Size(62, 17);
-            this.chxProfessionalAsscociateMemberThreeYear.TabIndex = 207;
-            this.chxProfessionalAsscociateMemberThreeYear.Text = "3 Years";
-            this.chxProfessionalAsscociateMemberThreeYear.UseVisualStyleBackColor = true;
-            this.chxProfessionalAsscociateMemberThreeYear.CheckedChanged += new System.EventHandler(this.chxProfessionalAsscociateMemberThreeYear_CheckedChanged);
+            this.chxProfessionalAsscociateThreeYear.AutoSize = true;
+            this.chxProfessionalAsscociateThreeYear.Location = new System.Drawing.Point(314, 605);
+            this.chxProfessionalAsscociateThreeYear.Name = "chxProfessionalAsscociateThreeYear";
+            this.chxProfessionalAsscociateThreeYear.Size = new System.Drawing.Size(62, 17);
+            this.chxProfessionalAsscociateThreeYear.TabIndex = 207;
+            this.chxProfessionalAsscociateThreeYear.Text = "3 Years";
+            this.chxProfessionalAsscociateThreeYear.UseVisualStyleBackColor = true;
+            this.chxProfessionalAsscociateThreeYear.CheckedChanged += new System.EventHandler(this.chxProfessionalAsscociateMemberThreeYear_CheckedChanged);
             // 
-            // chxProfessionalRegularMemberThreeYears
+            // chxProfessionalRegularThreeYears
             // 
-            this.chxProfessionalRegularMemberThreeYears.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chxProfessionalRegularThreeYears.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chxProfessionalRegularMemberThreeYears.AutoSize = true;
-            this.chxProfessionalRegularMemberThreeYears.Location = new System.Drawing.Point(75, 605);
-            this.chxProfessionalRegularMemberThreeYears.Name = "chxProfessionalRegularMemberThreeYears";
-            this.chxProfessionalRegularMemberThreeYears.Size = new System.Drawing.Size(62, 17);
-            this.chxProfessionalRegularMemberThreeYears.TabIndex = 208;
-            this.chxProfessionalRegularMemberThreeYears.Text = "3 Years";
-            this.chxProfessionalRegularMemberThreeYears.UseVisualStyleBackColor = true;
-            this.chxProfessionalRegularMemberThreeYears.CheckedChanged += new System.EventHandler(this.chxProfessionalRegularMemberThreeYears_CheckedChanged);
+            this.chxProfessionalRegularThreeYears.AutoSize = true;
+            this.chxProfessionalRegularThreeYears.Location = new System.Drawing.Point(75, 605);
+            this.chxProfessionalRegularThreeYears.Name = "chxProfessionalRegularThreeYears";
+            this.chxProfessionalRegularThreeYears.Size = new System.Drawing.Size(62, 17);
+            this.chxProfessionalRegularThreeYears.TabIndex = 208;
+            this.chxProfessionalRegularThreeYears.Text = "3 Years";
+            this.chxProfessionalRegularThreeYears.UseVisualStyleBackColor = true;
+            this.chxProfessionalRegularThreeYears.CheckedChanged += new System.EventHandler(this.chxProfessionalRegularMemberThreeYears_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -618,7 +618,7 @@ namespace InformationManagementSystem
             this.chxProfessionalTransferee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chxProfessionalTransferee.AutoSize = true;
-            this.chxProfessionalTransferee.Location = new System.Drawing.Point(490, 583);
+            this.chxProfessionalTransferee.Location = new System.Drawing.Point(514, 583);
             this.chxProfessionalTransferee.Name = "chxProfessionalTransferee";
             this.chxProfessionalTransferee.Size = new System.Drawing.Size(79, 17);
             this.chxProfessionalTransferee.TabIndex = 221;
@@ -701,46 +701,46 @@ namespace InformationManagementSystem
             this.cbxProfessionalDegree.Size = new System.Drawing.Size(278, 21);
             this.cbxProfessionalDegree.TabIndex = 229;
             // 
-            // checkBox1
+            // chxProfessionalAssociate
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(251, 583);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(221, 17);
-            this.checkBox1.TabIndex = 230;
-            this.checkBox1.Text = "Regular (BSCpE Graduate - Required):";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chxProfessionalAssociate.AutoSize = true;
+            this.chxProfessionalAssociate.Location = new System.Drawing.Point(251, 583);
+            this.chxProfessionalAssociate.Name = "chxProfessionalAssociate";
+            this.chxProfessionalAssociate.Size = new System.Drawing.Size(244, 17);
+            this.chxProfessionalAssociate.TabIndex = 230;
+            this.chxProfessionalAssociate.Text = "Associate (Non-CpE Graduate - Required):";
+            this.chxProfessionalAssociate.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chxProfessionalRegular
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 583);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(221, 17);
-            this.checkBox2.TabIndex = 231;
-            this.checkBox2.Text = "Regular (BSCpE Graduate - Required):";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chxProfessionalRegular.AutoSize = true;
+            this.chxProfessionalRegular.Location = new System.Drawing.Point(12, 583);
+            this.chxProfessionalRegular.Name = "chxProfessionalRegular";
+            this.chxProfessionalRegular.Size = new System.Drawing.Size(208, 17);
+            this.chxProfessionalRegular.TabIndex = 231;
+            this.chxProfessionalRegular.Text = "Regular (CpE Graduate - Required):";
+            this.chxProfessionalRegular.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // chxProfessionalAsscociateLifetime
             // 
-            this.checkBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chxProfessionalAsscociateLifetime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(382, 605);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(68, 17);
-            this.checkBox3.TabIndex = 232;
-            this.checkBox3.Text = "Lifetime";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chxProfessionalAsscociateLifetime.AutoSize = true;
+            this.chxProfessionalAsscociateLifetime.Location = new System.Drawing.Point(382, 605);
+            this.chxProfessionalAsscociateLifetime.Name = "chxProfessionalAsscociateLifetime";
+            this.chxProfessionalAsscociateLifetime.Size = new System.Drawing.Size(68, 17);
+            this.chxProfessionalAsscociateLifetime.TabIndex = 232;
+            this.chxProfessionalAsscociateLifetime.Text = "Lifetime";
+            this.chxProfessionalAsscociateLifetime.UseVisualStyleBackColor = true;
             // 
             // FrmNewProfessional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 672);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chxProfessionalAsscociateLifetime);
+            this.Controls.Add(this.chxProfessionalRegular);
+            this.Controls.Add(this.chxProfessionalAssociate);
             this.Controls.Add(this.cbxProfessionalDegree);
             this.Controls.Add(this.cbxProfessionalSchool);
             this.Controls.Add(this.btnProfessionalDegree);
@@ -759,14 +759,14 @@ namespace InformationManagementSystem
             this.Controls.Add(this.btnProfessionalBrowse);
             this.Controls.Add(this.tbxProfessionalID);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.chxProfessionalRegularMemberThreeYears);
-            this.Controls.Add(this.chxProfessionalAsscociateMemberThreeYear);
+            this.Controls.Add(this.chxProfessionalRegularThreeYears);
+            this.Controls.Add(this.chxProfessionalAsscociateThreeYear);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.chxProfessionalLifetime);
+            this.Controls.Add(this.chxProfessionalRegularLifetime);
             this.Controls.Add(this.btnProfessionalSave);
             this.Controls.Add(this.btnProfessioanlCancel);
-            this.Controls.Add(this.chxProfessionalAsscociateMemberOneYear);
-            this.Controls.Add(this.chxProfessionalRegularMemberOneYear);
+            this.Controls.Add(this.chxProfessionalAsscociateOneYear);
+            this.Controls.Add(this.chxProfessionalRegularOneYear);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label21);
@@ -863,11 +863,11 @@ namespace InformationManagementSystem
         public System.Windows.Forms.Button btnProfessionalSchool;
         public System.Windows.Forms.Button btnProfessionalDegree;
         public System.Windows.Forms.PictureBox pbxProfessionalPicture;
-        public System.Windows.Forms.CheckBox chxProfessionalLifetime;
+        public System.Windows.Forms.CheckBox chxProfessionalRegularLifetime;
         public System.Windows.Forms.Button btnProfessionalSave;
         public System.Windows.Forms.Button btnProfessioanlCancel;
-        public System.Windows.Forms.CheckBox chxProfessionalAsscociateMemberOneYear;
-        public System.Windows.Forms.CheckBox chxProfessionalRegularMemberOneYear;
+        public System.Windows.Forms.CheckBox chxProfessionalAsscociateOneYear;
+        public System.Windows.Forms.CheckBox chxProfessionalRegularOneYear;
         public System.Windows.Forms.TextBox tbxProfessionalSpecializations;
         public System.Windows.Forms.TextBox tbxProfessionalEmployeeAddress;
         public System.Windows.Forms.TextBox tbxProfessionalPresentAddress;
@@ -878,16 +878,16 @@ namespace InformationManagementSystem
         public System.Windows.Forms.TextBox tbxProfessionalLastName;
         public System.Windows.Forms.TextBox tbxProfessionalMiddleName;
         public System.Windows.Forms.TextBox tbxProfessionalFirstName;
-        public System.Windows.Forms.CheckBox chxProfessionalAsscociateMemberThreeYear;
-        public System.Windows.Forms.CheckBox chxProfessionalRegularMemberThreeYears;
+        public System.Windows.Forms.CheckBox chxProfessionalAsscociateThreeYear;
+        public System.Windows.Forms.CheckBox chxProfessionalRegularThreeYears;
         public System.Windows.Forms.CheckBox chxProfessionalTransferee;
         public System.Windows.Forms.Button btnProfessionalUpdate;
         public System.Windows.Forms.ComboBox cbxProfessionalCurrentEmployer;
         public System.Windows.Forms.ComboBox cbxProfessionalJobTitle;
         public System.Windows.Forms.ComboBox cbxProfessionalSchool;
         public System.Windows.Forms.ComboBox cbxProfessionalDegree;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        public System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox chxProfessionalAssociate;
+        private System.Windows.Forms.CheckBox chxProfessionalRegular;
+        public System.Windows.Forms.CheckBox chxProfessionalAsscociateLifetime;
     }
 }

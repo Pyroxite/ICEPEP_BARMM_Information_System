@@ -10,19 +10,22 @@ namespace InformationManagementSystem
         private readonly OleDbConnection _connection = new OleDbConnection();
         private OleDbCommand _command = new OleDbCommand();
         private OleDbDataReader _reader;
-        private readonly List<int> idList = new List<int>();
+        private readonly List<int> _splittedID = new List<int>();
 
-        public void Increment(TextBox id, string query, string quaryID)
+        private void InitializedConnection()
         {
             _connection.ConnectionString = DatabaseConnection.GetConnection();
+        }
 
+        public void IncrementID(TextBox tbxID, string query, string quaryID)
+        {
+            InitializedConnection();
             try
             {
-                var _querySearch = query;
-
+                var querySearch = query;
                 _connection.Open();
                 _command.Connection = _connection;
-                _command = new OleDbCommand(_querySearch, _connection);
+                _command = new OleDbCommand(querySearch, _connection);
                 _reader = _command.ExecuteReader();
 
                 while (_reader.Read())
@@ -30,19 +33,19 @@ namespace InformationManagementSystem
                     var fullID = _reader[quaryID].ToString();
                     var idNumber = fullID.Split('-');
                     var convertedID = Convert.ToInt32(idNumber[2]);
-                    idList.Add(convertedID);
+                    _splittedID.Add(convertedID);
                 }
-                idList.Sort();
-                foreach (var item in idList)
+                _splittedID.Sort();
+                foreach (var id in _splittedID)
                 {
-                    var increment = item + 1;
-                    var returnID = id.Text = increment.ToString();
+                    var increment = id + 1;
+                    var returnID = tbxID.Text = increment.ToString();
                     GetIncrementedID(returnID);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to increment professional id " + ex.Message);
+                MessageBox.Show("Failed to increment id " + ex.Message);
             }
         }
 

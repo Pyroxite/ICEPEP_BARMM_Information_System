@@ -33,7 +33,7 @@ namespace InformationManagementSystem
         {
             var query = "SELECT tbl_StudentInformation.StudentID FROM tbl_StudentInformation";
             var queryID = "StudentID";
-            _autoIncrement.Increment(tbxStudentID, query, queryID);
+            _autoIncrement.IncrementID(tbxStudentID, query, queryID);
             _autoIncrement.GetIncrementedID(tbxStudentID.Text);
         }
 

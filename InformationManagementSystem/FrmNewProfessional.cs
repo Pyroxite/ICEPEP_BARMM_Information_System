@@ -11,7 +11,6 @@ namespace InformationManagementSystem
         private readonly OleDbConnection _connection = new OleDbConnection();
         private OleDbCommand _command = new OleDbCommand();
         private readonly FrmMain _main;
-        private AutoIncrementID _autoIncrement = new AutoIncrementID();
 
         public FrmNewProfessional(FrmMain main)
         {
@@ -26,10 +25,11 @@ namespace InformationManagementSystem
 
         private void AutoIncrementProfessioanlID()
         {
+            var autoIncrement = new AutoIncrementID();
             var query = "SELECT tbl_ProfessionalInformation.ProfessionalID FROM tbl_ProfessionalInformation";
             var queryID = "ProfessionalID";
-            _autoIncrement.Increment(tbxProfessionalID, query, queryID);
-            _autoIncrement.GetIncrementedID(tbxProfessionalID.Text);
+            autoIncrement.IncrementID(tbxProfessionalID, query, queryID);
+            autoIncrement.GetIncrementedID(tbxProfessionalID.Text);
         }
 
         private void AddImage()
@@ -40,34 +40,6 @@ namespace InformationManagementSystem
             };
             if (openImage.ShowDialog() == DialogResult.OK)
                 pbxProfessionalPicture.Image = new Bitmap(openImage.FileName);
-        }
-
-        private string RegularOneYearValidTime()
-        {
-            var dateSigned = dtpProfessionalDateSigned.Value.ToString("MM/dd/yyyy");
-            var validUntil = DateTime.Parse(dateSigned);
-            return validUntil.AddYears(1).ToString("MM/dd/yyyy");
-        }
-
-        private string RegularThreeYearValidTime()
-        {
-            var dateSigned = dtpProfessionalDateSigned.Value.ToString("MM/dd/yyyy");
-            var validUntil = DateTime.Parse(dateSigned);
-            return validUntil.AddYears(3).ToString("MM/dd/yyyy");
-        }
-
-        private string AssociateOneYearValidTime()
-        {
-            var dateSigned = dtpProfessionalDateSigned.Value.ToString("MM/dd/yyyy");
-            var validUntil = DateTime.Parse(dateSigned);
-            return validUntil.AddYears(1).ToString("MM/dd/yyyy");
-        }
-
-        private string AssociateThreeYearValidTime()
-        {
-            var dateSigned = dtpProfessionalDateSigned.Value.ToString("MM/dd/yyyy");
-            var validUntil = DateTime.Parse(dateSigned);
-            return validUntil.AddYears(3).ToString("MM/dd/yyyy");
         }
 
         private void CheckIDNumber()
@@ -103,7 +75,7 @@ namespace InformationManagementSystem
 
         private void LockDateTime()
         {
-            if (chxProfessionalRegularMemberOneYear.Checked == false && chxProfessionalRegularMemberThreeYears.Checked == false && chxProfessionalAsscociateMemberOneYear.Checked == false && chxProfessionalAsscociateMemberThreeYear.Checked == false)
+            if (chxProfessionalRegularOneYear.Checked == false && chxProfessionalRegularThreeYears.Checked == false && chxProfessionalAsscociateOneYear.Checked == false && chxProfessionalAsscociateThreeYear.Checked == false)
                 dtpProfessionalDateSigned.Enabled = false;
         }
 
@@ -142,16 +114,16 @@ namespace InformationManagementSystem
             cbxProfessionalDegree.Text = "";
             dtpProfessionalYearGraduated.Value = DateTime.Now;
             dtpProfessionalDateSigned.Value = DateTime.Now;
-            chxProfessionalRegularMemberOneYear.Checked = false;
-            chxProfessionalRegularMemberThreeYears.Checked = false;
-            chxProfessionalAsscociateMemberOneYear.Checked = false;
-            chxProfessionalAsscociateMemberThreeYear.Checked = false;
+            chxProfessionalRegularOneYear.Checked = false;
+            chxProfessionalRegularThreeYears.Checked = false;
+            chxProfessionalAsscociateOneYear.Checked = false;
+            chxProfessionalAsscociateThreeYear.Checked = false;
             chxProfessionalTransferee.Checked = false;
         }
 
         private void InsertData()
         {
-            if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text) || string.IsNullOrWhiteSpace(tbxProfessionalFirstName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalMiddleName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalLastName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxProfessionalRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxProfessionalContact.Text) || string.IsNullOrWhiteSpace(tbxProfessionalPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxProfessionalCurrentEmployer.Text) || string.IsNullOrWhiteSpace(cbxProfessionalJobTitle.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmployeeAddress.Text) || string.IsNullOrWhiteSpace(dtpProfessionalDateSigned.Text) || chxProfessionalRegularMemberOneYear.Checked == false && chxProfessionalRegularMemberThreeYears.Checked == false && chxProfessionalLifetime.Checked == false && chxProfessionalAsscociateMemberOneYear.Checked == false && chxProfessionalAsscociateMemberThreeYear.Checked == false)
+            if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text) || string.IsNullOrWhiteSpace(tbxProfessionalFirstName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalMiddleName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalLastName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxProfessionalRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxProfessionalContact.Text) || string.IsNullOrWhiteSpace(tbxProfessionalPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxProfessionalCurrentEmployer.Text) || string.IsNullOrWhiteSpace(cbxProfessionalJobTitle.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmployeeAddress.Text) || string.IsNullOrWhiteSpace(dtpProfessionalDateSigned.Text) || chxProfessionalRegularOneYear.Checked == false && chxProfessionalRegularThreeYears.Checked == false && chxProfessionalRegularLifetime.Checked == false && chxProfessionalAsscociateOneYear.Checked == false && chxProfessionalAsscociateThreeYear.Checked == false)
             {
                 MessageBox.Show("Some fields are missing");
                 return;
@@ -237,29 +209,25 @@ namespace InformationManagementSystem
                     _command.Parameters.AddWithValue("@ProfessionalYearGraduated", dtpProfessionalYearGraduated.Value.ToString("MM/dd/yyyy"));
 
                     //Status
-                    if (chxProfessionalRegularMemberOneYear.Checked == true)
+                    if (chxProfessionalRegular.Checked == true)
                         _command.Parameters.AddWithValue("@ProfessionalStatus", "Regular");
-                    else if (chxProfessionalRegularMemberThreeYears.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Regular");
-                    else if (chxProfessionalAsscociateMemberOneYear.Checked == true)
+                    else if (chxProfessionalAssociate.Checked == true)
                         _command.Parameters.AddWithValue("@ProfessionalStatus", "Associate");
-                    else if (chxProfessionalAsscociateMemberThreeYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Associate");
-                    else if (chxProfessionalLifetime.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalStatus", "Lifetime");
 
                     _command.Parameters.AddWithValue("@ProfessionalDateSigned", dtpProfessionalDateSigned.Value.ToString("MM/dd/yyyy"));
 
                     //Valid Time
-                    if (chxProfessionalRegularMemberOneYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", RegularOneYearValidTime());
-                    else if (chxProfessionalRegularMemberThreeYears.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", RegularThreeYearValidTime());
-                    else if (chxProfessionalAsscociateMemberOneYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", AssociateOneYearValidTime());
-                    else if (chxProfessionalAsscociateMemberThreeYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", AssociateThreeYearValidTime());
-                    else if (chxProfessionalLifetime.Checked == true)
+                    if (chxProfessionalRegularOneYear.Checked == true)
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.RegularOneYearValidTime(dtpProfessionalDateSigned));
+                    else if (chxProfessionalRegularThreeYears.Checked == true)
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.RegularThreeYearValidTime(dtpProfessionalDateSigned));
+                    else if (chxProfessionalAsscociateOneYear.Checked == true)
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.AssociateOneYearValidTime(dtpProfessionalDateSigned));
+                    else if (chxProfessionalAsscociateThreeYear.Checked == true)
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.AssociateThreeYearValidTime(dtpProfessionalDateSigned));
+                    else if (chxProfessionalRegularLifetime.Checked == true)
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", "Lifetime");
+                    else if (chxProfessionalAsscociateLifetime.Checked == true)
                         _command.Parameters.AddWithValue("@ProfessionalValidUntil", "Lifetime");
 
                     _command.Parameters.AddWithValue("@ProfessionalIsActive", "Yes");
@@ -289,19 +257,21 @@ namespace InformationManagementSystem
             CheckIDNumber();
         }
 
+        #region CheckBoxes
+
         private void chxProfessionalRegularMemberOneYear_CheckedChanged(object sender, EventArgs e)
         {
-            if (chxProfessionalRegularMemberOneYear.Checked == true)
+            if (chxProfessionalRegularOneYear.Checked == true)
             {
                 UnlockDateTime();
-                chxProfessionalRegularMemberThreeYears.Checked = false;
-                chxProfessionalRegularMemberThreeYears.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberOneYear.Checked = false;
-                chxProfessionalAsscociateMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberThreeYear.Checked = false;
-                chxProfessionalAsscociateMemberThreeYear.CheckState = CheckState.Unchecked;
-                chxProfessionalLifetime.Checked = false;
-                chxProfessionalLifetime.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
             }
             else
             {
@@ -311,17 +281,17 @@ namespace InformationManagementSystem
 
         private void chxProfessionalRegularMemberThreeYears_CheckedChanged(object sender, EventArgs e)
         {
-            if (chxProfessionalRegularMemberThreeYears.Checked == true)
+            if (chxProfessionalRegularThreeYears.Checked == true)
             {
                 UnlockDateTime();
-                chxProfessionalRegularMemberOneYear.Checked = false;
-                chxProfessionalRegularMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberOneYear.Checked = false;
-                chxProfessionalAsscociateMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberThreeYear.Checked = false;
-                chxProfessionalAsscociateMemberThreeYear.CheckState = CheckState.Unchecked;
-                chxProfessionalLifetime.Checked = false;
-                chxProfessionalLifetime.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
             }
             else
             {
@@ -331,17 +301,17 @@ namespace InformationManagementSystem
 
         private void chxProfessionalAsscociateMemberOneYear_CheckedChanged(object sender, EventArgs e)
         {
-            if (chxProfessionalAsscociateMemberOneYear.Checked == true)
+            if (chxProfessionalAsscociateOneYear.Checked == true)
             {
                 UnlockDateTime();
-                chxProfessionalRegularMemberOneYear.Checked = false;
-                chxProfessionalRegularMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalRegularMemberThreeYears.Checked = false;
-                chxProfessionalRegularMemberThreeYears.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberThreeYear.Checked = false;
-                chxProfessionalAsscociateMemberThreeYear.CheckState = CheckState.Unchecked;
-                chxProfessionalLifetime.Checked = false;
-                chxProfessionalLifetime.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
             }
             else
             {
@@ -351,17 +321,17 @@ namespace InformationManagementSystem
 
         private void chxProfessionalAsscociateMemberThreeYear_CheckedChanged(object sender, EventArgs e)
         {
-            if (chxProfessionalAsscociateMemberThreeYear.Checked == true)
+            if (chxProfessionalAsscociateThreeYear.Checked == true)
             {
                 UnlockDateTime();
-                chxProfessionalRegularMemberOneYear.Checked = false;
-                chxProfessionalRegularMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalRegularMemberThreeYears.Checked = false;
-                chxProfessionalRegularMemberThreeYears.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberOneYear.Checked = false;
-                chxProfessionalAsscociateMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalLifetime.Checked = false;
-                chxProfessionalLifetime.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
             }
             else
             {
@@ -371,16 +341,16 @@ namespace InformationManagementSystem
 
         private void chxProfessionalLifetime_CheckedChanged(object sender, EventArgs e)
         {
-            if (chxProfessionalLifetime.Checked == true)
+            if (chxProfessionalRegularLifetime.Checked == true)
             {
-                chxProfessionalRegularMemberOneYear.Checked = false;
-                chxProfessionalRegularMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalRegularMemberThreeYears.Checked = false;
-                chxProfessionalRegularMemberThreeYears.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberOneYear.Checked = false;
-                chxProfessionalAsscociateMemberOneYear.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateMemberThreeYear.Checked = false;
-                chxProfessionalAsscociateMemberThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
                 UnlockDateTime();
             }
             else
@@ -388,6 +358,8 @@ namespace InformationManagementSystem
                 LockDateTime();
             }
         }
+
+        #endregion
 
         private void btnProfessionalBrowse_Click(object sender, EventArgs e)
         {
