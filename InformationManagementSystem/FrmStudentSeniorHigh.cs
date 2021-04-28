@@ -13,7 +13,7 @@ namespace InformationManagementSystem
         public FrmStudentSeniorHigh(FrmNewStudent student)
         {
             InitializeComponent();
-            _connection.ConnectionString = DatabaseConnection.GetConnection();
+            _connection.ConnectionString = DatabaseHelper.GetConnection();
             _student = student;
         }
 

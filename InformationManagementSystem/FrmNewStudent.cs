@@ -12,12 +12,11 @@ namespace InformationManagementSystem
         private OleDbCommand _command = new OleDbCommand();
         private OleDbDataReader _reader;
         private readonly FrmMain _main;
-        private AutoIncrementID _autoIncrement = new AutoIncrementID();
 
         public FrmNewStudent(FrmMain main)
         {
             InitializeComponent();
-            _connection.ConnectionString = DatabaseConnection.GetConnection();
+            _connection.ConnectionString = DatabaseHelper.GetConnection();
             _main = main;
             LockDateTime();
             LoadCurrentSchool();
@@ -31,22 +30,11 @@ namespace InformationManagementSystem
 
         private void AutoIncrementStudentID()
         {
+            var autoIncrement = new AutoIncrementID();
             var query = "SELECT tbl_StudentInformation.StudentID FROM tbl_StudentInformation";
             var queryID = "StudentID";
-            _autoIncrement.IncrementID(tbxStudentID, query, queryID);
-            _autoIncrement.GetIncrementedID(tbxStudentID.Text);
-        }
-
-        public void BackupDataBase()
-        {
-            var dateBaseName = "ICEPEP.mdb";
-            var sourcePath = Application.StartupPath;
-            var targetPath = Application.StartupPath + @"\Backup\";
-
-            var sourceFile = Path.Combine(sourcePath, dateBaseName);
-            var destinationFile = Path.Combine(targetPath, dateBaseName);
-
-            File.Copy(sourceFile, destinationFile, true);
+            autoIncrement.IncrementID(tbxStudentID, query, queryID);
+            autoIncrement.GetIncrementedID(tbxStudentID.Text);
         }
 
         private void ClearFields()
@@ -204,7 +192,7 @@ namespace InformationManagementSystem
             return validUntil.AddYears(1).ToString("MM/dd/yyyy");
         }
 
-        private void InsertData()
+        public void InsertData()
         {
             if (string.IsNullOrWhiteSpace(tbxStudentID.Text) || string.IsNullOrWhiteSpace(tbxStudentFirstName.Text) || string.IsNullOrWhiteSpace(tbxStudentMiddleName.Text) || string.IsNullOrWhiteSpace(tbxStudentLastName.Text) || string.IsNullOrWhiteSpace(tbxStudentEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxStudentRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxStudentContact.Text) || string.IsNullOrWhiteSpace(tbxStudentPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxStudentCurrentSchool.Text) || string.IsNullOrWhiteSpace(cbxStudentCourse.Text) || string.IsNullOrWhiteSpace(cbxStudentYear.Text) || string.IsNullOrWhiteSpace(tbxStudentSchoolAddress.Text) || chxStudentRegularMember.Checked == false && chxStudentAssociateMember.Checked == false)
             {
@@ -215,11 +203,12 @@ namespace InformationManagementSystem
             {
                 try
                 {
-                    pbxStudentPicture.Image.Save(Application.StartupPath + @"\Pictures\Student\" + lblStudentBarmmID.Text + "-" + lblStudentDateID.Text + "-" + tbxStudentID.Text + ".jpg");
+                    var studentID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentSE.Text + lblStudentIndentTwo.Text + lblStudentDateID.Text + lblStudentIndentThree.Text + tbxStudentID.Text;
+
+                    pbxStudentPicture.Image.Save(Application.StartupPath + @"\Pictures\Student\" + studentID + ".jpg");
                     pbxStudentPicture.Image.Dispose();
 
-                    var studentID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentDateID.Text + lblStudentIndentTwo.Text + tbxStudentID.Text;
-                    var imagePath = Application.StartupPath + @"\Pictures\Student\" + lblStudentBarmmID.Text + "-" + lblStudentDateID.Text + "-" + tbxStudentID.Text + ".jpg";
+                    var imagePath = Application.StartupPath + @"\Pictures\Student\" + studentID + ".jpg";
 
                     var _queryInsert = "INSERT INTO tbl_StudentInformation " +
                         "(StudentID," +
@@ -325,7 +314,7 @@ namespace InformationManagementSystem
         {
             try
             {
-                var existingID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentDateID.Text + lblStudentIndentTwo.Text + tbxStudentID.Text;
+                var existingID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentSE.Text + lblStudentIndentTwo.Text + lblStudentDateID.Text + lblStudentIndentThree.Text + tbxStudentID.Text;
 
                 var imagePath = Application.StartupPath + @"\Pictures\Student\" + existingID + ".jpg";
 
@@ -372,37 +361,6 @@ namespace InformationManagementSystem
             }
         }
 
-        private void CheckIDNumber()
-        {
-            try
-            {
-                var existingID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentDateID.Text + lblStudentIndentTwo.Text + tbxStudentID.Text;
-                var checkQuary = "SELECT COUNT(*) FROM tbl_StudentInformation WHERE StudentID = @StudentID";
-                _connection.Open();
-                _command.Connection = _connection;
-                _command = new OleDbCommand(checkQuary, _connection);
-                _command.Parameters.AddWithValue("@StudentID", existingID);
-
-                var exist = Convert.ToInt32(_command.ExecuteScalar());
-
-                if (exist == 0)
-                {
-                    _connection.Close();
-                    InsertData();
-                }
-                else
-                {
-                    _connection.Close();
-                    MessageBox.Show("This ID Number is already exist");
-                }
-                _connection.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error in checking the id");
-            }
-        }
-
         private void AddImage()
         {
             var openImage = new OpenFileDialog
@@ -415,8 +373,11 @@ namespace InformationManagementSystem
 
         private void btnStudentSave_Click(object sender, EventArgs e)
         {
-            CheckIDNumber();
-            BackupDataBase();
+            var existingStudentID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentSE.Text + lblStudentIndentTwo.Text + lblStudentDateID.Text + lblStudentIndentThree.Text + tbxStudentID.Text;
+            var checkStudentQuary = "SELECT COUNT(*) FROM tbl_StudentInformation WHERE StudentID = @StudentID";
+            var queryStudentID = "@StudentID";
+            var checkDuplicate = new CheckDuplicateID();
+            checkDuplicate.CheckDuplicate(existingStudentID, checkStudentQuary, queryStudentID);
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -498,7 +459,6 @@ namespace InformationManagementSystem
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             UpdateMember();
-            BackupDataBase();
         }
     }
 }

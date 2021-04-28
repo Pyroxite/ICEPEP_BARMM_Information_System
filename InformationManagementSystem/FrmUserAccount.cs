@@ -12,7 +12,7 @@ namespace InformationManagementSystem
         public FrmUserAccount()
         {
             InitializeComponent();
-            _connection.ConnectionString = DatabaseConnection.GetConnection();
+            _connection.ConnectionString = DatabaseHelper.GetConnection();
             LoadAccount();
         }
 

@@ -14,38 +14,71 @@ namespace InformationManagementSystem
 
         private void InitializedConnection()
         {
-            _connection.ConnectionString = DatabaseConnection.GetConnection();
+            _connection.ConnectionString = DatabaseHelper.GetConnection();
         }
 
-        public void IncrementID(TextBox tbxID, string query, string quaryID)
+        public void IncrementID(TextBox tbxID, string query, string queryID)
         {
             InitializedConnection();
-            try
+            if (queryID == "StudentID")
             {
-                var querySearch = query;
-                _connection.Open();
-                _command.Connection = _connection;
-                _command = new OleDbCommand(querySearch, _connection);
-                _reader = _command.ExecuteReader();
+                try
+                {
+                    var querySearch = query;
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(querySearch, _connection);
+                    _reader = _command.ExecuteReader();
 
-                while (_reader.Read())
-                {
-                    var fullID = _reader[quaryID].ToString();
-                    var idNumber = fullID.Split('-');
-                    var convertedID = Convert.ToInt32(idNumber[2]);
-                    _splittedID.Add(convertedID);
+                    while (_reader.Read())
+                    {
+                        var fullID = _reader[queryID].ToString();
+                        var idNumber = fullID.Split('-');
+                        var convertedID = Convert.ToInt32(idNumber[3]);
+                        _splittedID.Add(convertedID);
+                    }
+                    _splittedID.Sort();
+                    foreach (var id in _splittedID)
+                    {
+                        var increment = id + 1;
+                        var returnID = tbxID.Text = increment.ToString();
+                        GetIncrementedID(returnID);
+                    }
                 }
-                _splittedID.Sort();
-                foreach (var id in _splittedID)
+                catch (Exception ex)
                 {
-                    var increment = id + 1;
-                    var returnID = tbxID.Text = increment.ToString();
-                    GetIncrementedID(returnID);
+                    MessageBox.Show("Failed to increment id " + ex.Message);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Failed to increment id " + ex.Message);
+                try
+                {
+                    var querySearch = query;
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(querySearch, _connection);
+                    _reader = _command.ExecuteReader();
+
+                    while (_reader.Read())
+                    {
+                        var fullID = _reader[queryID].ToString();
+                        var idNumber = fullID.Split('-');
+                        var convertedID = Convert.ToInt32(idNumber[2]);
+                        _splittedID.Add(convertedID);
+                    }
+                    _splittedID.Sort();
+                    foreach (var id in _splittedID)
+                    {
+                        var increment = id + 1;
+                        var returnID = tbxID.Text = increment.ToString();
+                        GetIncrementedID(returnID);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to increment id " + ex.Message);
+                }
             }
         }
 

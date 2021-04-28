@@ -11,60 +11,20 @@ namespace InformationManagementSystem
         private OleDbConnection _connection = new OleDbConnection();
         private OleDbCommand _command = new OleDbCommand();
         private OleDbDataReader _reader;
-        private DirectoryInfo _hideDirectory;
         private FrmNewStudent _student;
+        private readonly DirectoryHelper _helper = new DirectoryHelper();
 
         public FrmMain()
         {
             InitializeComponent();
-            _connection.ConnectionString = DatabaseConnection.GetConnection();
-            CreateDirectory();
+            _connection.ConnectionString = DatabaseHelper.GetConnection();
+            _helper.CreateDirectory();
             LoadListOfStudents();
             LoadRegularStudents();
             LoadAssociateStudents();
             LoadRegularStudents();
             LoadListOfProfessionals();
         }
-
-        #region Directories
-
-        private void CreateDirectory()
-        {
-            var directoryImage = Application.StartupPath + @"\Pictures\";
-            var directoryBackup = Application.StartupPath + @"\Backup\";
-            var directoryStudent = Application.StartupPath + @"\Pictures\Student\";
-            var directoryProfessional = Application.StartupPath + @"\Pictures\Professional\";
-
-            if (!File.Exists(directoryImage) || !File.Exists(directoryBackup) || !File.Exists(directoryStudent) || !File.Exists(directoryProfessional))
-            {
-                Directory.CreateDirectory(directoryImage);
-                _hideDirectory = new DirectoryInfo(directoryImage)
-                {
-                    Attributes = FileAttributes.Hidden
-                };
-
-                Directory.CreateDirectory(directoryBackup);
-                _hideDirectory = new DirectoryInfo(directoryBackup)
-                {
-                    Attributes = FileAttributes.Hidden
-                };
-                Directory.CreateDirectory(directoryStudent);
-                _hideDirectory = new DirectoryInfo(directoryStudent)
-                {
-                    Attributes = FileAttributes.Hidden
-                };
-
-                Directory.CreateDirectory(directoryProfessional);
-                _hideDirectory = new DirectoryInfo(directoryProfessional)
-                {
-                    Attributes = FileAttributes.Hidden
-                };
-            }
-            else
-                return;
-        }
-
-        #endregion Directories
 
         #region Clear
 
@@ -734,7 +694,6 @@ namespace InformationManagementSystem
         private void btnStudentBasicDelete_Click(object sender, EventArgs e)
         {
             DeleteStudentMember();
-            _student.BackupDataBase();
         }
 
         private void btnStudentClearFilter_Click(object sender, EventArgs e)
@@ -909,7 +868,6 @@ namespace InformationManagementSystem
                 newProfessional.chxProfessionalAsscociateOneYear.Enabled = false;
                 newProfessional.chxProfessionalAsscociateThreeYear.Enabled = false;
                 newProfessional.chxProfessionalRegularLifetime.Enabled = false;
-                newProfessional.btnProfessionalDegree.Enabled = false;
                 newProfessional.btnProfessionalSchool.Enabled = false;
                 newProfessional.btnProfessionalSave.Enabled = false;
                 newProfessional.btnProfessionalBrowse.Enabled = false;

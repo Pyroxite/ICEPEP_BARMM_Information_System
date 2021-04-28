@@ -71,7 +71,6 @@ namespace InformationManagementSystem
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbxProfessionalFirstName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.pbxProfessionalPicture = new System.Windows.Forms.PictureBox();
             this.chxProfessionalAsscociateThreeYear = new System.Windows.Forms.CheckBox();
             this.chxProfessionalRegularThreeYears = new System.Windows.Forms.CheckBox();
@@ -90,12 +89,12 @@ namespace InformationManagementSystem
             this.cbxProfessionalJobTitle = new System.Windows.Forms.ComboBox();
             this.btnProfessionalAddCurrentEmployer = new System.Windows.Forms.Button();
             this.btnProfessionalSchool = new System.Windows.Forms.Button();
-            this.btnProfessionalDegree = new System.Windows.Forms.Button();
             this.cbxProfessionalSchool = new System.Windows.Forms.ComboBox();
             this.cbxProfessionalDegree = new System.Windows.Forms.ComboBox();
             this.chxProfessionalAssociate = new System.Windows.Forms.CheckBox();
             this.chxProfessionalRegular = new System.Windows.Forms.CheckBox();
             this.chxProfessionalAsscociateLifetime = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -489,15 +488,6 @@ namespace InformationManagementSystem
             this.tbxProfessionalFirstName.Size = new System.Drawing.Size(150, 22);
             this.tbxProfessionalFirstName.TabIndex = 157;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 173);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
-            this.label1.TabIndex = 156;
-            this.label1.Text = "First Name (Required):";
-            // 
             // pbxProfessionalPicture
             // 
             this.pbxProfessionalPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -674,17 +664,6 @@ namespace InformationManagementSystem
             this.btnProfessionalSchool.Text = "+";
             this.btnProfessionalSchool.UseVisualStyleBackColor = true;
             // 
-            // btnProfessionalDegree
-            // 
-            this.btnProfessionalDegree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProfessionalDegree.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProfessionalDegree.Location = new System.Drawing.Point(329, 496);
-            this.btnProfessionalDegree.Name = "btnProfessionalDegree";
-            this.btnProfessionalDegree.Size = new System.Drawing.Size(25, 22);
-            this.btnProfessionalDegree.TabIndex = 227;
-            this.btnProfessionalDegree.Text = "+";
-            this.btnProfessionalDegree.UseVisualStyleBackColor = true;
-            // 
             // cbxProfessionalSchool
             // 
             this.cbxProfessionalSchool.FormattingEnabled = true;
@@ -696,9 +675,9 @@ namespace InformationManagementSystem
             // cbxProfessionalDegree
             // 
             this.cbxProfessionalDegree.FormattingEnabled = true;
-            this.cbxProfessionalDegree.Location = new System.Drawing.Point(361, 497);
+            this.cbxProfessionalDegree.Location = new System.Drawing.Point(330, 497);
             this.cbxProfessionalDegree.Name = "cbxProfessionalDegree";
-            this.cbxProfessionalDegree.Size = new System.Drawing.Size(278, 21);
+            this.cbxProfessionalDegree.Size = new System.Drawing.Size(309, 21);
             this.cbxProfessionalDegree.TabIndex = 229;
             // 
             // chxProfessionalAssociate
@@ -710,6 +689,7 @@ namespace InformationManagementSystem
             this.chxProfessionalAssociate.TabIndex = 230;
             this.chxProfessionalAssociate.Text = "Associate (Non-CpE Graduate - Required):";
             this.chxProfessionalAssociate.UseVisualStyleBackColor = true;
+            this.chxProfessionalAssociate.CheckedChanged += new System.EventHandler(this.chxProfessionalAssociate_CheckedChanged);
             // 
             // chxProfessionalRegular
             // 
@@ -720,6 +700,7 @@ namespace InformationManagementSystem
             this.chxProfessionalRegular.TabIndex = 231;
             this.chxProfessionalRegular.Text = "Regular (CpE Graduate - Required):";
             this.chxProfessionalRegular.UseVisualStyleBackColor = true;
+            this.chxProfessionalRegular.CheckedChanged += new System.EventHandler(this.chxProfessionalRegular_CheckedChanged);
             // 
             // chxProfessionalAsscociateLifetime
             // 
@@ -732,6 +713,16 @@ namespace InformationManagementSystem
             this.chxProfessionalAsscociateLifetime.TabIndex = 232;
             this.chxProfessionalAsscociateLifetime.Text = "Lifetime";
             this.chxProfessionalAsscociateLifetime.UseVisualStyleBackColor = true;
+            this.chxProfessionalAsscociateLifetime.CheckedChanged += new System.EventHandler(this.chxProfessionalAsscociateLifetime_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 173);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.TabIndex = 156;
+            this.label1.Text = "First Name (Required):";
             // 
             // FrmNewProfessional
             // 
@@ -743,7 +734,6 @@ namespace InformationManagementSystem
             this.Controls.Add(this.chxProfessionalAssociate);
             this.Controls.Add(this.cbxProfessionalDegree);
             this.Controls.Add(this.cbxProfessionalSchool);
-            this.Controls.Add(this.btnProfessionalDegree);
             this.Controls.Add(this.btnProfessionalSchool);
             this.Controls.Add(this.btnProfessionalAddCurrentEmployer);
             this.Controls.Add(this.cbxProfessionalJobTitle);
@@ -849,7 +839,6 @@ namespace InformationManagementSystem
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblProfessionalIndentTwo;
         private System.Windows.Forms.Label lblProfessionalIndentOne;
@@ -861,7 +850,6 @@ namespace InformationManagementSystem
         public System.Windows.Forms.DateTimePicker dtpProfessionalDateSigned;
         public System.Windows.Forms.Button btnProfessionalAddCurrentEmployer;
         public System.Windows.Forms.Button btnProfessionalSchool;
-        public System.Windows.Forms.Button btnProfessionalDegree;
         public System.Windows.Forms.PictureBox pbxProfessionalPicture;
         public System.Windows.Forms.CheckBox chxProfessionalRegularLifetime;
         public System.Windows.Forms.Button btnProfessionalSave;
@@ -889,5 +877,6 @@ namespace InformationManagementSystem
         private System.Windows.Forms.CheckBox chxProfessionalAssociate;
         private System.Windows.Forms.CheckBox chxProfessionalRegular;
         public System.Windows.Forms.CheckBox chxProfessionalAsscociateLifetime;
+        private System.Windows.Forms.Label label1;
     }
 }

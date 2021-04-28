@@ -15,7 +15,7 @@ namespace InformationManagementSystem
         public FrmNewProfessional(FrmMain main)
         {
             InitializeComponent();
-            _connection.ConnectionString = DatabaseConnection.GetConnection();
+            _connection.ConnectionString = DatabaseHelper.GetConnection();
             LockDateTime();
             AutoIncrementProfessioanlID();
             _main = main;
@@ -40,37 +40,6 @@ namespace InformationManagementSystem
             };
             if (openImage.ShowDialog() == DialogResult.OK)
                 pbxProfessionalPicture.Image = new Bitmap(openImage.FileName);
-        }
-
-        private void CheckIDNumber()
-        {
-            try
-            {
-                var existingID = lblProfessionalBarmmID.Text + lblProfessionalIndentOne.Text + lblProfessionalDateID.Text + lblProfessionalIndentTwo.Text + tbxProfessionalID.Text;
-                var checkQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalID = @ProfessionalID";
-                _connection.Open();
-                _command.Connection = _connection;
-                _command = new OleDbCommand(checkQuary, _connection);
-                _command.Parameters.AddWithValue("@ProfessionalID", existingID);
-
-                var exist = Convert.ToInt32(_command.ExecuteScalar());
-
-                if (exist == 0)
-                {
-                    _connection.Close();
-                    InsertData();
-                }
-                else
-                {
-                    _connection.Close();
-                    MessageBox.Show("This ID Number is already exist");
-                }
-                _connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error in checking the id " + ex.Message);
-            }
         }
 
         private void LockDateTime()
@@ -121,7 +90,7 @@ namespace InformationManagementSystem
             chxProfessionalTransferee.Checked = false;
         }
 
-        private void InsertData()
+        public void InsertData()
         {
             if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text) || string.IsNullOrWhiteSpace(tbxProfessionalFirstName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalMiddleName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalLastName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxProfessionalRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxProfessionalContact.Text) || string.IsNullOrWhiteSpace(tbxProfessionalPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxProfessionalCurrentEmployer.Text) || string.IsNullOrWhiteSpace(cbxProfessionalJobTitle.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmployeeAddress.Text) || string.IsNullOrWhiteSpace(dtpProfessionalDateSigned.Text) || chxProfessionalRegularOneYear.Checked == false && chxProfessionalRegularThreeYears.Checked == false && chxProfessionalRegularLifetime.Checked == false && chxProfessionalAsscociateOneYear.Checked == false && chxProfessionalAsscociateThreeYear.Checked == false)
             {
@@ -218,13 +187,13 @@ namespace InformationManagementSystem
 
                     //Valid Time
                     if (chxProfessionalRegularOneYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.RegularOneYearValidTime(dtpProfessionalDateSigned));
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalExpirationDate.RegularOneYearValidTime(dtpProfessionalDateSigned));
                     else if (chxProfessionalRegularThreeYears.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.RegularThreeYearValidTime(dtpProfessionalDateSigned));
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalExpirationDate.RegularThreeYearValidTime(dtpProfessionalDateSigned));
                     else if (chxProfessionalAsscociateOneYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.AssociateOneYearValidTime(dtpProfessionalDateSigned));
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalExpirationDate.AssociateOneYearValidTime(dtpProfessionalDateSigned));
                     else if (chxProfessionalAsscociateThreeYear.Checked == true)
-                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalTimeValidity.AssociateThreeYearValidTime(dtpProfessionalDateSigned));
+                        _command.Parameters.AddWithValue("@ProfessionalValidUntil", ProfessionalExpirationDate.AssociateThreeYearValidTime(dtpProfessionalDateSigned));
                     else if (chxProfessionalRegularLifetime.Checked == true)
                         _command.Parameters.AddWithValue("@ProfessionalValidUntil", "Lifetime");
                     else if (chxProfessionalAsscociateLifetime.Checked == true)
@@ -254,7 +223,11 @@ namespace InformationManagementSystem
 
         private void btnProfessionalSave_Click(object sender, EventArgs e)
         {
-            CheckIDNumber();
+            var checkQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalID = @ProfessionalID";
+            var queryID = "@ProfessionalID";
+            var professionalID = lblProfessionalBarmmID.Text + lblProfessionalIndentOne.Text + lblProfessionalDateID.Text + lblProfessionalIndentTwo.Text + tbxProfessionalID.Text;
+            var checkID = new CheckDuplicateID();
+            checkID.CheckDuplicate(professionalID, checkQuary, queryID);
         }
 
         #region CheckBoxes
@@ -266,12 +239,17 @@ namespace InformationManagementSystem
                 UnlockDateTime();
                 chxProfessionalRegularThreeYears.Checked = false;
                 chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+
+                chxProfessionalAssociate.Checked = false;
+                chxProfessionalAssociate.CheckState = CheckState.Unchecked;
                 chxProfessionalAsscociateOneYear.Checked = false;
                 chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalAsscociateThreeYear.Checked = false;
                 chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
-                chxProfessionalRegularLifetime.Checked = false;
-                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
             }
             else
             {
@@ -286,12 +264,17 @@ namespace InformationManagementSystem
                 UnlockDateTime();
                 chxProfessionalRegularOneYear.Checked = false;
                 chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+
+                chxProfessionalAssociate.Checked = false;
+                chxProfessionalAssociate.CheckState = CheckState.Unchecked;
                 chxProfessionalAsscociateOneYear.Checked = false;
                 chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalAsscociateThreeYear.Checked = false;
                 chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
-                chxProfessionalRegularLifetime.Checked = false;
-                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
             }
             else
             {
@@ -304,12 +287,17 @@ namespace InformationManagementSystem
             if (chxProfessionalAsscociateOneYear.Checked == true)
             {
                 UnlockDateTime();
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
+
+                chxProfessionalRegular.Checked = false;
+                chxProfessionalRegular.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularOneYear.Checked = false;
                 chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularThreeYears.Checked = false;
                 chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateThreeYear.Checked = false;
-                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularLifetime.Checked = false;
                 chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
             }
@@ -324,12 +312,17 @@ namespace InformationManagementSystem
             if (chxProfessionalAsscociateThreeYear.Checked == true)
             {
                 UnlockDateTime();
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
+
+                chxProfessionalRegular.Checked = false;
+                chxProfessionalRegular.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularOneYear.Checked = false;
                 chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularThreeYears.Checked = false;
                 chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
-                chxProfessionalAsscociateOneYear.Checked = false;
-                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularLifetime.Checked = false;
                 chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
             }
@@ -347,6 +340,36 @@ namespace InformationManagementSystem
                 chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalRegularThreeYears.Checked = false;
                 chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+
+                chxProfessionalAssociate.Checked = false;
+                chxProfessionalAssociate.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
+                UnlockDateTime();
+            }
+            else
+            {
+                LockDateTime();
+            }
+        }
+
+        private void chxProfessionalAsscociateLifetime_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chxProfessionalAsscociateLifetime.Checked == true)
+            {
+                chxProfessionalRegular.Checked = false;
+                chxProfessionalRegular.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+
                 chxProfessionalAsscociateOneYear.Checked = false;
                 chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
                 chxProfessionalAsscociateThreeYear.Checked = false;
@@ -359,6 +382,56 @@ namespace InformationManagementSystem
             }
         }
 
+        private void chxProfessionalRegular_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chxProfessionalRegular.Checked == true)
+            {
+                chxProfessionalAssociate.Checked = false;
+                chxProfessionalAssociate.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
+                UnlockDateTime();
+            }
+            else
+            {
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+                LockDateTime();
+            }
+        }
+        private void chxProfessionalAssociate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chxProfessionalAssociate.Checked == true)
+            {
+                chxProfessionalRegular.Checked = false;
+                chxProfessionalRegular.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularOneYear.Checked = false;
+                chxProfessionalRegularOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularThreeYears.Checked = false;
+                chxProfessionalRegularThreeYears.CheckState = CheckState.Unchecked;
+                chxProfessionalRegularLifetime.Checked = false;
+                chxProfessionalRegularLifetime.CheckState = CheckState.Unchecked;
+                UnlockDateTime();
+            }
+            else
+            {
+                chxProfessionalAsscociateOneYear.Checked = false;
+                chxProfessionalAsscociateOneYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateThreeYear.Checked = false;
+                chxProfessionalAsscociateThreeYear.CheckState = CheckState.Unchecked;
+                chxProfessionalAsscociateLifetime.Checked = false;
+                chxProfessionalAsscociateLifetime.CheckState = CheckState.Unchecked;
+                LockDateTime();
+            }
+        }
         #endregion
 
         private void btnProfessionalBrowse_Click(object sender, EventArgs e)

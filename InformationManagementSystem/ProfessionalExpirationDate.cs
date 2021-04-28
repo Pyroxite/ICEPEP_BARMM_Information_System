@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace InformationManagementSystem
 {
-    public static class ProfessionalTimeValidity
+    public static class ProfessionalExpirationDate
     {
         public static string AssociateOneYearValidTime(DateTimePicker validTime)
         {

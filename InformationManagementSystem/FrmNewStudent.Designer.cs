@@ -88,10 +88,12 @@ namespace InformationManagementSystem
             this.chxStudentTransferee = new System.Windows.Forms.CheckBox();
             this.lblStudentBarmmID = new System.Windows.Forms.Label();
             this.lblStudentDateID = new System.Windows.Forms.Label();
-            this.lblStudentIndentOne = new System.Windows.Forms.Label();
             this.lblStudentIndentTwo = new System.Windows.Forms.Label();
+            this.lblStudentIndentThree = new System.Windows.Forms.Label();
             this.tbxStudentRegionChapter = new System.Windows.Forms.TextBox();
             this.btnStudentUpdate = new System.Windows.Forms.Button();
+            this.lblStudentIndentOne = new System.Windows.Forms.Label();
+            this.lblStudentSE = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -308,9 +310,9 @@ namespace InformationManagementSystem
             // 
             // tbxStudentID
             // 
-            this.tbxStudentID.Location = new System.Drawing.Point(746, 189);
+            this.tbxStudentID.Location = new System.Drawing.Point(771, 189);
             this.tbxStudentID.Name = "tbxStudentID";
-            this.tbxStudentID.Size = new System.Drawing.Size(75, 22);
+            this.tbxStudentID.Size = new System.Drawing.Size(46, 22);
             this.tbxStudentID.TabIndex = 113;
             // 
             // label7
@@ -628,29 +630,29 @@ namespace InformationManagementSystem
             // lblStudentDateID
             // 
             this.lblStudentDateID.AutoSize = true;
-            this.lblStudentDateID.Location = new System.Drawing.Point(704, 192);
+            this.lblStudentDateID.Location = new System.Drawing.Point(726, 192);
             this.lblStudentDateID.Name = "lblStudentDateID";
             this.lblStudentDateID.Size = new System.Drawing.Size(31, 13);
             this.lblStudentDateID.TabIndex = 169;
             this.lblStudentDateID.Text = "0000";
             // 
-            // lblStudentIndentOne
-            // 
-            this.lblStudentIndentOne.AutoSize = true;
-            this.lblStudentIndentOne.Location = new System.Drawing.Point(696, 192);
-            this.lblStudentIndentOne.Name = "lblStudentIndentOne";
-            this.lblStudentIndentOne.Size = new System.Drawing.Size(11, 13);
-            this.lblStudentIndentOne.TabIndex = 170;
-            this.lblStudentIndentOne.Text = "-";
-            // 
             // lblStudentIndentTwo
             // 
             this.lblStudentIndentTwo.AutoSize = true;
-            this.lblStudentIndentTwo.Location = new System.Drawing.Point(733, 192);
+            this.lblStudentIndentTwo.Location = new System.Drawing.Point(717, 192);
             this.lblStudentIndentTwo.Name = "lblStudentIndentTwo";
             this.lblStudentIndentTwo.Size = new System.Drawing.Size(11, 13);
-            this.lblStudentIndentTwo.TabIndex = 171;
+            this.lblStudentIndentTwo.TabIndex = 170;
             this.lblStudentIndentTwo.Text = "-";
+            // 
+            // lblStudentIndentThree
+            // 
+            this.lblStudentIndentThree.AutoSize = true;
+            this.lblStudentIndentThree.Location = new System.Drawing.Point(754, 192);
+            this.lblStudentIndentThree.Name = "lblStudentIndentThree";
+            this.lblStudentIndentThree.Size = new System.Drawing.Size(11, 13);
+            this.lblStudentIndentThree.TabIndex = 171;
+            this.lblStudentIndentThree.Text = "-";
             // 
             // tbxStudentRegionChapter
             // 
@@ -670,15 +672,35 @@ namespace InformationManagementSystem
             this.btnStudentUpdate.UseVisualStyleBackColor = true;
             this.btnStudentUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // lblStudentIndentOne
+            // 
+            this.lblStudentIndentOne.AutoSize = true;
+            this.lblStudentIndentOne.Location = new System.Drawing.Point(693, 192);
+            this.lblStudentIndentOne.Name = "lblStudentIndentOne";
+            this.lblStudentIndentOne.Size = new System.Drawing.Size(11, 13);
+            this.lblStudentIndentOne.TabIndex = 174;
+            this.lblStudentIndentOne.Text = "-";
+            // 
+            // lblStudentSE
+            // 
+            this.lblStudentSE.AutoSize = true;
+            this.lblStudentSE.Location = new System.Drawing.Point(701, 192);
+            this.lblStudentSE.Name = "lblStudentSE";
+            this.lblStudentSE.Size = new System.Drawing.Size(19, 13);
+            this.lblStudentSE.TabIndex = 175;
+            this.lblStudentSE.Text = "SE";
+            // 
             // FrmNewStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 670);
+            this.Controls.Add(this.lblStudentSE);
+            this.Controls.Add(this.lblStudentIndentOne);
             this.Controls.Add(this.btnStudentUpdate);
             this.Controls.Add(this.tbxStudentRegionChapter);
+            this.Controls.Add(this.lblStudentIndentThree);
             this.Controls.Add(this.lblStudentIndentTwo);
-            this.Controls.Add(this.lblStudentIndentOne);
             this.Controls.Add(this.lblStudentDateID);
             this.Controls.Add(this.lblStudentBarmmID);
             this.Controls.Add(this.chxStudentTransferee);
@@ -816,9 +838,11 @@ namespace InformationManagementSystem
         public System.Windows.Forms.CheckBox chxStudentTransferee;
         private System.Windows.Forms.Label lblStudentBarmmID;
         private System.Windows.Forms.Label lblStudentDateID;
-        private System.Windows.Forms.Label lblStudentIndentOne;
         private System.Windows.Forms.Label lblStudentIndentTwo;
+        private System.Windows.Forms.Label lblStudentIndentThree;
         public System.Windows.Forms.TextBox tbxStudentRegionChapter;
         public System.Windows.Forms.Button btnStudentUpdate;
+        private System.Windows.Forms.Label lblStudentIndentOne;
+        private System.Windows.Forms.Label lblStudentSE;
     }
 }
