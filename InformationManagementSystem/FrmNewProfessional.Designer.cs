@@ -149,6 +149,7 @@ namespace InformationManagementSystem
             this.btnProfessioanlCancel.TabIndex = 195;
             this.btnProfessioanlCancel.Text = "Cancel";
             this.btnProfessioanlCancel.UseVisualStyleBackColor = true;
+            this.btnProfessioanlCancel.Click += new System.EventHandler(this.btnProfessioanlCancel_Click);
             // 
             // chxProfessionalAsscociateOneYear
             // 
@@ -625,6 +626,7 @@ namespace InformationManagementSystem
             this.btnProfessionalUpdate.TabIndex = 222;
             this.btnProfessionalUpdate.Text = "Update";
             this.btnProfessionalUpdate.UseVisualStyleBackColor = true;
+            this.btnProfessionalUpdate.Click += new System.EventHandler(this.btnProfessionalUpdate_Click);
             // 
             // cbxProfessionalCurrentEmployer
             // 
@@ -874,9 +876,9 @@ namespace InformationManagementSystem
         public System.Windows.Forms.ComboBox cbxProfessionalJobTitle;
         public System.Windows.Forms.ComboBox cbxProfessionalSchool;
         public System.Windows.Forms.ComboBox cbxProfessionalDegree;
-        private System.Windows.Forms.CheckBox chxProfessionalAssociate;
-        private System.Windows.Forms.CheckBox chxProfessionalRegular;
         public System.Windows.Forms.CheckBox chxProfessionalAsscociateLifetime;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.CheckBox chxProfessionalAssociate;
+        public System.Windows.Forms.CheckBox chxProfessionalRegular;
     }
 }

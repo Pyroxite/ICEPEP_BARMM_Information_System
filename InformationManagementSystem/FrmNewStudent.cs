@@ -185,13 +185,6 @@ namespace InformationManagementSystem
             }
         }
 
-        private string ValidTime()
-        {
-            var dateSigned = dtpStudentDateSigned.Value.ToString("MM/dd/yyyy");
-            var validUntil = DateTime.Parse(dateSigned);
-            return validUntil.AddYears(1).ToString("MM/dd/yyyy");
-        }
-
         public void InsertData()
         {
             if (string.IsNullOrWhiteSpace(tbxStudentID.Text) || string.IsNullOrWhiteSpace(tbxStudentFirstName.Text) || string.IsNullOrWhiteSpace(tbxStudentMiddleName.Text) || string.IsNullOrWhiteSpace(tbxStudentLastName.Text) || string.IsNullOrWhiteSpace(tbxStudentEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxStudentRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxStudentContact.Text) || string.IsNullOrWhiteSpace(tbxStudentPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxStudentCurrentSchool.Text) || string.IsNullOrWhiteSpace(cbxStudentCourse.Text) || string.IsNullOrWhiteSpace(cbxStudentYear.Text) || string.IsNullOrWhiteSpace(tbxStudentSchoolAddress.Text) || chxStudentRegularMember.Checked == false && chxStudentAssociateMember.Checked == false)
@@ -287,7 +280,7 @@ namespace InformationManagementSystem
                         _command.Parameters.AddWithValue("@StudentStatus", "Associate");
 
                     _command.Parameters.AddWithValue("@StudentDateSigned", dtpStudentDateSigned.Value.ToString("MM/dd/yyyy"));
-                    _command.Parameters.AddWithValue("@StudentValidUntil", ValidTime());
+                    _command.Parameters.AddWithValue("@StudentValidUntil", StudentExpirationDate.ValidTime(dtpStudentDateSigned));
                     _command.Parameters.AddWithValue("@StudentIsActive", "Yes");
 
                     if (chxStudentTransferee.Checked == true)

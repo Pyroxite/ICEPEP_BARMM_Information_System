@@ -92,7 +92,7 @@ namespace InformationManagementSystem
 
         public void InsertData()
         {
-            if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text) || string.IsNullOrWhiteSpace(tbxProfessionalFirstName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalMiddleName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalLastName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxProfessionalRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxProfessionalContact.Text) || string.IsNullOrWhiteSpace(tbxProfessionalPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxProfessionalCurrentEmployer.Text) || string.IsNullOrWhiteSpace(cbxProfessionalJobTitle.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmployeeAddress.Text) || string.IsNullOrWhiteSpace(dtpProfessionalDateSigned.Text) || chxProfessionalRegularOneYear.Checked == false && chxProfessionalRegularThreeYears.Checked == false && chxProfessionalRegularLifetime.Checked == false && chxProfessionalAsscociateOneYear.Checked == false && chxProfessionalAsscociateThreeYear.Checked == false)
+            if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text) || string.IsNullOrWhiteSpace(tbxProfessionalFirstName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalMiddleName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalLastName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxProfessionalRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxProfessionalContact.Text) || string.IsNullOrWhiteSpace(tbxProfessionalPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxProfessionalCurrentEmployer.Text) || string.IsNullOrWhiteSpace(cbxProfessionalJobTitle.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmployeeAddress.Text) || string.IsNullOrWhiteSpace(dtpProfessionalDateSigned.Text))
             {
                 MessageBox.Show("Some fields are missing");
                 return;
@@ -228,6 +228,60 @@ namespace InformationManagementSystem
             var professionalID = lblProfessionalBarmmID.Text + lblProfessionalIndentOne.Text + lblProfessionalDateID.Text + lblProfessionalIndentTwo.Text + tbxProfessionalID.Text;
             var checkID = new CheckDuplicateID();
             checkID.CheckDuplicate(professionalID, checkQuary, queryID);
+        }
+
+        private void btnProfessionalUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var existingID = lblProfessionalBarmmID.Text + lblProfessionalIndentOne.Text + lblProfessionalDateID.Text + lblProfessionalIndentTwo.Text + tbxProfessionalID.Text;
+
+                var imagePath = Application.StartupPath + @"\Pictures\Professional\" + existingID + ".jpg";
+
+                Bitmap newImage = new Bitmap(pbxProfessionalPicture.Image);
+                if (File.Exists(imagePath))
+                    File.Delete(imagePath);
+                newImage.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                newImage.Dispose();
+
+                var _queryUpdate = "UPDATE tbl_ProfessionalInformation SET ProfessionalFirstName = @ProfessionalFirstName, ProfessionalMiddleName = @ProfessionalMiddleName, ProfessionalLastName = @ProfessionalLastName, ProfessionalSuffixName = @ProfessionalSuffixName, ProfessionalEmailAddress = @ProfessionalEmailAddress, ProfessionalRegionChapter = @ProfessionalRegionChapter, ProfessionalContactNumber = @ProfessionalContactNumber, ProfessionalPresentAddress = @ProfessionalPresentAddress, ProfessionalPicture = @ProfessionalPicture, ProfessionalCurrentEmployer = @ProfessionalCurrentEmployer, ProfessionalJobTitle = @ProfessionalJobTitle, ProfessionalEmployerAddress = @ProfessionalEmployerAddress, ProfessionalSpecialization = @ProfessionalSpecialization, ProfessionalSchool = @ProfessionalSchool, ProfessionalDegree = @ProfessionalDegree, ProfessionalYearGraduated = @ProfessionalYearGraduatet WHERE ProfessionalID LIKE @ProfessionalID";
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(_queryUpdate, _connection);
+                _command.Parameters.AddWithValue("@ProfessionalFirstName", tbxProfessionalFirstName.Text);
+                _command.Parameters.AddWithValue("@ProfessionalMiddleName", tbxProfessionalMiddleName.Text);
+                _command.Parameters.AddWithValue("@ProfessionalLastName", tbxProfessionalLastName.Text);
+                _command.Parameters.AddWithValue("@ProfessionalSuffixName", tbxProfessionalSuffixName.Text);
+                _command.Parameters.AddWithValue("@ProfessionalEmailAddress", tbxProfessionalEmailAddress.Text);
+                _command.Parameters.AddWithValue("@ProfessionalRegionChapter", tbxProfessionalRegionChapter.Text);
+                _command.Parameters.AddWithValue("@ProfessionalContactNumber", tbxProfessionalContact.Text);
+                _command.Parameters.AddWithValue("@ProfessionalPresentAddress", tbxProfessionalPresentAddress.Text);
+                _command.Parameters.AddWithValue("@ProfessionalPicture", imagePath);
+                _command.Parameters.AddWithValue("@ProfessionalCurrentEmployer", cbxProfessionalCurrentEmployer.Text);
+                _command.Parameters.AddWithValue("@ProfessionalJobTitle", cbxProfessionalJobTitle.Text);
+                _command.Parameters.AddWithValue("@ProfessionalEmployerAddress", tbxProfessionalEmployeeAddress.Text);
+                _command.Parameters.AddWithValue("@ProfessionalSpecialization", tbxProfessionalSpecializations.Text);
+                _command.Parameters.AddWithValue("@ProfessionalSchool", cbxProfessionalSchool.Text);
+                _command.Parameters.AddWithValue("@ProfessionalDegree", cbxProfessionalDegree.Text);
+                _command.Parameters.AddWithValue("@ProfessionalYearGraduated", dtpProfessionalYearGraduated.Value.ToString("MM/dd/yyyy"));
+                _command.Parameters.AddWithValue("@ProfessionalID", existingID);
+
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _main.LoadListOfProfessionals();
+                ClearFields();
+                MessageBox.Show("This member has been updated");
+            }
+            catch (Exception)
+            {
+                _connection.Close();
+                MessageBox.Show("Failed to update");
+            }
+        }
+        private void btnProfessioanlCancel_Click(object sender, EventArgs e)
+        {
+            Dispose();
         }
 
         #region CheckBoxes
@@ -438,5 +492,6 @@ namespace InformationManagementSystem
         {
             AddImage();
         }
+
     }
 }
