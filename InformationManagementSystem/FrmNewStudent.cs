@@ -12,6 +12,7 @@ namespace InformationManagementSystem
         private OleDbCommand _command = new OleDbCommand();
         private OleDbDataReader _reader;
         private readonly FrmMain _main;
+        private readonly SingleInstanceForm _singleInstance = new SingleInstanceForm();
 
         public FrmNewStudent(FrmMain main)
         {
@@ -26,6 +27,7 @@ namespace InformationManagementSystem
             AutoIncrementStudentID();
             lblStudentDateID.Text = DateTime.Now.ToString("yyyy");
             tbxStudentRegionChapter.Text = "BARMM";
+            btnStudentUpdate.Enabled = false;
         }
 
         private void AutoIncrementStudentID()
@@ -190,13 +192,32 @@ namespace InformationManagementSystem
             if (string.IsNullOrWhiteSpace(tbxStudentID.Text) || string.IsNullOrWhiteSpace(tbxStudentFirstName.Text) || string.IsNullOrWhiteSpace(tbxStudentMiddleName.Text) || string.IsNullOrWhiteSpace(tbxStudentLastName.Text) || string.IsNullOrWhiteSpace(tbxStudentEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxStudentRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxStudentContact.Text) || string.IsNullOrWhiteSpace(tbxStudentPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxStudentCurrentSchool.Text) || string.IsNullOrWhiteSpace(cbxStudentCourse.Text) || string.IsNullOrWhiteSpace(cbxStudentYear.Text) || string.IsNullOrWhiteSpace(tbxStudentSchoolAddress.Text) || chxStudentRegularMember.Checked == false && chxStudentAssociateMember.Checked == false)
             {
                 MessageBox.Show("Some fields are missing");
-                return;
             }
             else
             {
                 try
                 {
                     var studentID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentSE.Text + lblStudentIndentTwo.Text + lblStudentDateID.Text + lblStudentIndentThree.Text + tbxStudentID.Text;
+                    var checkStudentQuary = "SELECT COUNT(*) FROM tbl_StudentInformation WHERE StudentID = @StudentID";
+                    var queryStudentID = "@StudentID";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(checkStudentQuary, _connection);
+                    _command.Parameters.AddWithValue(queryStudentID, studentID);
+
+                    var exist = Convert.ToInt32(_command.ExecuteScalar());
+
+                    if (exist == 0)
+                    {
+                        _connection.Close();
+                    }
+                    else
+                    {
+                        _connection.Close();
+                        MessageBox.Show("This student id is already exist");
+                        return;
+                    }
 
                     pbxStudentPicture.Image.Save(Application.StartupPath + @"\Pictures\Student\" + studentID + ".jpg");
                     pbxStudentPicture.Image.Dispose();
@@ -303,7 +324,7 @@ namespace InformationManagementSystem
             }
         }
 
-        private void UpdateMember()
+        private void UpdateStudentMember()
         {
             try
             {
@@ -346,6 +367,7 @@ namespace InformationManagementSystem
                 _main.LoadListOfStudents();
                 ClearFields();
                 MessageBox.Show("This member has been updated");
+                Dispose();
             }
             catch (Exception)
             {
@@ -366,11 +388,7 @@ namespace InformationManagementSystem
 
         private void btnStudentSave_Click(object sender, EventArgs e)
         {
-            var existingStudentID = lblStudentBarmmID.Text + lblStudentIndentOne.Text + lblStudentSE.Text + lblStudentIndentTwo.Text + lblStudentDateID.Text + lblStudentIndentThree.Text + tbxStudentID.Text;
-            var checkStudentQuary = "SELECT COUNT(*) FROM tbl_StudentInformation WHERE StudentID = @StudentID";
-            var queryStudentID = "@StudentID";
-            var checkDuplicate = new CheckDuplicateID();
-            checkDuplicate.CheckDuplicate(existingStudentID, checkStudentQuary, queryStudentID);
+            InsertData();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -408,8 +426,7 @@ namespace InformationManagementSystem
 
         private void btnStudentAddCurrentSchool_Click(object sender, EventArgs e)
         {
-            var addCurrentSchool = new FrmStudentCurrentSchool(this);
-            addCurrentSchool.Show();
+            _singleInstance.OpenForm(new FrmStudentCurrentSchool(this));
         }
 
         private void cbxStudentCurrentSchool_SelectedIndexChanged(object sender, EventArgs e)
@@ -439,8 +456,7 @@ namespace InformationManagementSystem
 
         private void btnStudentAddHighSchool_Click(object sender, EventArgs e)
         {
-            var seniorHigh = new FrmStudentSeniorHigh(this);
-            seniorHigh.Show();
+            _singleInstance.OpenForm(new FrmStudentSeniorHigh(this));
         }
 
         private void btnStudentCancel_Click(object sender, EventArgs e)
@@ -451,7 +467,7 @@ namespace InformationManagementSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateMember();
+            UpdateStudentMember();
         }
     }
 }

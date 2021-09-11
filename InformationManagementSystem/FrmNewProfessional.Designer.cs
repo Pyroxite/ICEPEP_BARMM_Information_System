@@ -45,7 +45,6 @@ namespace InformationManagementSystem
             this.label19 = new System.Windows.Forms.Label();
             this.tbxProfessionalSpecializations = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.tbxProfessionalEmployeeAddress = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -89,12 +88,14 @@ namespace InformationManagementSystem
             this.cbxProfessionalJobTitle = new System.Windows.Forms.ComboBox();
             this.btnProfessionalAddCurrentEmployer = new System.Windows.Forms.Button();
             this.btnProfessionalSchool = new System.Windows.Forms.Button();
-            this.cbxProfessionalSchool = new System.Windows.Forms.ComboBox();
+            this.cbxProfessionalTertiarySchool = new System.Windows.Forms.ComboBox();
             this.cbxProfessionalDegree = new System.Windows.Forms.ComboBox();
             this.chxProfessionalAssociate = new System.Windows.Forms.CheckBox();
             this.chxProfessionalRegular = new System.Windows.Forms.CheckBox();
             this.chxProfessionalAsscociateLifetime = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnProfessionalAddJobTitle = new System.Windows.Forms.Button();
+            this.tbxProfessionalEmployeeAddress = new System.Windows.Forms.TextBox();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -269,13 +270,6 @@ namespace InformationManagementSystem
             this.label17.Size = new System.Drawing.Size(91, 13);
             this.label17.TabIndex = 185;
             this.label17.Text = "Specialization/s:";
-            // 
-            // tbxProfessionalEmployeeAddress
-            // 
-            this.tbxProfessionalEmployeeAddress.Location = new System.Drawing.Point(650, 356);
-            this.tbxProfessionalEmployeeAddress.Name = "tbxProfessionalEmployeeAddress";
-            this.tbxProfessionalEmployeeAddress.Size = new System.Drawing.Size(297, 22);
-            this.tbxProfessionalEmployeeAddress.TabIndex = 184;
             // 
             // label16
             // 
@@ -635,13 +629,14 @@ namespace InformationManagementSystem
             this.cbxProfessionalCurrentEmployer.Name = "cbxProfessionalCurrentEmployer";
             this.cbxProfessionalCurrentEmployer.Size = new System.Drawing.Size(278, 21);
             this.cbxProfessionalCurrentEmployer.TabIndex = 223;
+            this.cbxProfessionalCurrentEmployer.SelectedIndexChanged += new System.EventHandler(this.CbxProfessionalCurrentEmployer_SelectedIndexChanged);
             // 
             // cbxProfessionalJobTitle
             // 
             this.cbxProfessionalJobTitle.FormattingEnabled = true;
-            this.cbxProfessionalJobTitle.Location = new System.Drawing.Point(330, 357);
+            this.cbxProfessionalJobTitle.Location = new System.Drawing.Point(358, 357);
             this.cbxProfessionalJobTitle.Name = "cbxProfessionalJobTitle";
-            this.cbxProfessionalJobTitle.Size = new System.Drawing.Size(310, 21);
+            this.cbxProfessionalJobTitle.Size = new System.Drawing.Size(283, 21);
             this.cbxProfessionalJobTitle.TabIndex = 224;
             // 
             // btnProfessionalAddCurrentEmployer
@@ -654,6 +649,7 @@ namespace InformationManagementSystem
             this.btnProfessionalAddCurrentEmployer.TabIndex = 225;
             this.btnProfessionalAddCurrentEmployer.Text = "+";
             this.btnProfessionalAddCurrentEmployer.UseVisualStyleBackColor = true;
+            this.btnProfessionalAddCurrentEmployer.Click += new System.EventHandler(this.BtnProfessionalAddCurrentEmployer_Click);
             // 
             // btnProfessionalSchool
             // 
@@ -665,18 +661,24 @@ namespace InformationManagementSystem
             this.btnProfessionalSchool.TabIndex = 226;
             this.btnProfessionalSchool.Text = "+";
             this.btnProfessionalSchool.UseVisualStyleBackColor = true;
+            this.btnProfessionalSchool.Click += new System.EventHandler(this.BtnProfessionalSchool_Click);
             // 
-            // cbxProfessionalSchool
+            // cbxProfessionalTertiarySchool
             // 
-            this.cbxProfessionalSchool.FormattingEnabled = true;
-            this.cbxProfessionalSchool.Location = new System.Drawing.Point(44, 497);
-            this.cbxProfessionalSchool.Name = "cbxProfessionalSchool";
-            this.cbxProfessionalSchool.Size = new System.Drawing.Size(278, 21);
-            this.cbxProfessionalSchool.TabIndex = 228;
+            this.cbxProfessionalTertiarySchool.FormattingEnabled = true;
+            this.cbxProfessionalTertiarySchool.Location = new System.Drawing.Point(44, 497);
+            this.cbxProfessionalTertiarySchool.Name = "cbxProfessionalTertiarySchool";
+            this.cbxProfessionalTertiarySchool.Size = new System.Drawing.Size(278, 21);
+            this.cbxProfessionalTertiarySchool.TabIndex = 228;
             // 
             // cbxProfessionalDegree
             // 
             this.cbxProfessionalDegree.FormattingEnabled = true;
+            this.cbxProfessionalDegree.Items.AddRange(new object[] {
+            "BSIT",
+            "BSCS",
+            "BSCPE",
+            "Other"});
             this.cbxProfessionalDegree.Location = new System.Drawing.Point(330, 497);
             this.cbxProfessionalDegree.Name = "cbxProfessionalDegree";
             this.cbxProfessionalDegree.Size = new System.Drawing.Size(309, 21);
@@ -726,16 +728,37 @@ namespace InformationManagementSystem
             this.label1.TabIndex = 156;
             this.label1.Text = "First Name (Required):";
             // 
+            // btnProfessionalAddJobTitle
+            // 
+            this.btnProfessionalAddJobTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProfessionalAddJobTitle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfessionalAddJobTitle.Location = new System.Drawing.Point(327, 356);
+            this.btnProfessionalAddJobTitle.Name = "btnProfessionalAddJobTitle";
+            this.btnProfessionalAddJobTitle.Size = new System.Drawing.Size(25, 22);
+            this.btnProfessionalAddJobTitle.TabIndex = 233;
+            this.btnProfessionalAddJobTitle.Text = "+";
+            this.btnProfessionalAddJobTitle.UseVisualStyleBackColor = true;
+            this.btnProfessionalAddJobTitle.Click += new System.EventHandler(this.BtnProfessionalAddJobTitle_Click);
+            // 
+            // tbxProfessionalEmployeeAddress
+            // 
+            this.tbxProfessionalEmployeeAddress.Location = new System.Drawing.Point(650, 357);
+            this.tbxProfessionalEmployeeAddress.Name = "tbxProfessionalEmployeeAddress";
+            this.tbxProfessionalEmployeeAddress.Size = new System.Drawing.Size(296, 22);
+            this.tbxProfessionalEmployeeAddress.TabIndex = 234;
+            // 
             // FrmNewProfessional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 672);
+            this.Controls.Add(this.tbxProfessionalEmployeeAddress);
+            this.Controls.Add(this.btnProfessionalAddJobTitle);
             this.Controls.Add(this.chxProfessionalAsscociateLifetime);
             this.Controls.Add(this.chxProfessionalRegular);
             this.Controls.Add(this.chxProfessionalAssociate);
             this.Controls.Add(this.cbxProfessionalDegree);
-            this.Controls.Add(this.cbxProfessionalSchool);
+            this.Controls.Add(this.cbxProfessionalTertiarySchool);
             this.Controls.Add(this.btnProfessionalSchool);
             this.Controls.Add(this.btnProfessionalAddCurrentEmployer);
             this.Controls.Add(this.cbxProfessionalJobTitle);
@@ -766,7 +789,6 @@ namespace InformationManagementSystem
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.tbxProfessionalSpecializations);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.tbxProfessionalEmployeeAddress);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -799,6 +821,7 @@ namespace InformationManagementSystem
             this.MinimizeBox = false;
             this.Name = "FrmNewProfessional";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Add New Professional";
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -859,7 +882,6 @@ namespace InformationManagementSystem
         public System.Windows.Forms.CheckBox chxProfessionalAsscociateOneYear;
         public System.Windows.Forms.CheckBox chxProfessionalRegularOneYear;
         public System.Windows.Forms.TextBox tbxProfessionalSpecializations;
-        public System.Windows.Forms.TextBox tbxProfessionalEmployeeAddress;
         public System.Windows.Forms.TextBox tbxProfessionalPresentAddress;
         public System.Windows.Forms.TextBox tbxProfessionalContact;
         public System.Windows.Forms.TextBox tbxProfessionalRegionChapter;
@@ -874,11 +896,13 @@ namespace InformationManagementSystem
         public System.Windows.Forms.Button btnProfessionalUpdate;
         public System.Windows.Forms.ComboBox cbxProfessionalCurrentEmployer;
         public System.Windows.Forms.ComboBox cbxProfessionalJobTitle;
-        public System.Windows.Forms.ComboBox cbxProfessionalSchool;
+        public System.Windows.Forms.ComboBox cbxProfessionalTertiarySchool;
         public System.Windows.Forms.ComboBox cbxProfessionalDegree;
         public System.Windows.Forms.CheckBox chxProfessionalAsscociateLifetime;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.CheckBox chxProfessionalAssociate;
         public System.Windows.Forms.CheckBox chxProfessionalRegular;
+        public System.Windows.Forms.Button btnProfessionalAddJobTitle;
+        public System.Windows.Forms.TextBox tbxProfessionalEmployeeAddress;
     }
 }

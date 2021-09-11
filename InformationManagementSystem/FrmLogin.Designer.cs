@@ -42,7 +42,7 @@ namespace InformationManagementSystem
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(79, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(135, 132);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -51,23 +51,24 @@ namespace InformationManagementSystem
             // 
             // tbxLoginUsername
             // 
-            this.tbxLoginUsername.Location = new System.Drawing.Point(29, 197);
+            this.tbxLoginUsername.Location = new System.Drawing.Point(153, 34);
             this.tbxLoginUsername.Name = "tbxLoginUsername";
-            this.tbxLoginUsername.Size = new System.Drawing.Size(233, 22);
+            this.tbxLoginUsername.Size = new System.Drawing.Size(197, 22);
             this.tbxLoginUsername.TabIndex = 1;
             // 
             // tbxLoginPassword
             // 
-            this.tbxLoginPassword.Location = new System.Drawing.Point(29, 250);
+            this.tbxLoginPassword.Location = new System.Drawing.Point(153, 87);
             this.tbxLoginPassword.Name = "tbxLoginPassword";
-            this.tbxLoginPassword.Size = new System.Drawing.Size(233, 22);
+            this.tbxLoginPassword.Size = new System.Drawing.Size(197, 22);
             this.tbxLoginPassword.TabIndex = 2;
+            this.tbxLoginPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 175);
+            this.label1.Location = new System.Drawing.Point(150, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 3;
@@ -77,7 +78,7 @@ namespace InformationManagementSystem
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 228);
+            this.label2.Location = new System.Drawing.Point(150, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 4;
@@ -85,18 +86,20 @@ namespace InformationManagementSystem
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(109, 297);
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(210, 121);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 362);
+            this.ClientSize = new System.Drawing.Size(366, 170);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

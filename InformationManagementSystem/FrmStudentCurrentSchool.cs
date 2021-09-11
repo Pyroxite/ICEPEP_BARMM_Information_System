@@ -19,25 +19,32 @@ namespace InformationManagementSystem
 
         private void btnCurrentAdd_Click(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(tbxCurrentSchool.Text) || string.IsNullOrWhiteSpace(tbxCurrentSchoolAddress.Text))
             {
-                var _queryInsert = "INSERT INTO tbl_StudentCurrentSchool (CurrentSchool, CurrentSchoolAddress) VALUES (@CurrentSchool, @CurrentSchoolAddress)";
-
-                _connection.Open();
-                _command.Connection = _connection;
-                _command = new OleDbCommand(_queryInsert, _connection);
-                _command.Parameters.AddWithValue("@CurrentSchool", tbxCurrentSchool.Text);
-                _command.Parameters.AddWithValue("@CurrentSchoolAddress", tbxCurrentSchoolAddress.Text);
-                _command.ExecuteNonQuery();
-                _connection.Close();
-                _student.LoadCurrentSchool();
-                ClearFields();
-                MessageBox.Show("New record has been added");
+                MessageBox.Show("Some fields are missing");
             }
-            catch (Exception)
+            else
             {
-                _connection.Close();
-                MessageBox.Show("Connection Failed");
+                try
+                {
+                    var _queryInsert = "INSERT INTO tbl_StudentCurrentSchool (CurrentSchool, CurrentSchoolAddress) VALUES (@CurrentSchool, @CurrentSchoolAddress)";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(_queryInsert, _connection);
+                    _command.Parameters.AddWithValue("@CurrentSchool", tbxCurrentSchool.Text);
+                    _command.Parameters.AddWithValue("@CurrentSchoolAddress", tbxCurrentSchoolAddress.Text);
+                    _command.ExecuteNonQuery();
+                    _connection.Close();
+                    _student.LoadCurrentSchool();
+                    ClearFields();
+                    MessageBox.Show("New record has been added");
+                }
+                catch (Exception)
+                {
+                    _connection.Close();
+                    MessageBox.Show("Connection Failed");
+                }
             }
         }
 

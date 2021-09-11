@@ -8,22 +8,29 @@ namespace InformationManagementSystem
 {
     public partial class FrmMain : Form
     {
-        private OleDbConnection _connection = new OleDbConnection();
+        private readonly OleDbConnection _connection = new OleDbConnection();
         private OleDbCommand _command = new OleDbCommand();
         private OleDbDataReader _reader;
-        private FrmNewStudent _student;
         private readonly DirectoryHelper _helper = new DirectoryHelper();
+        private readonly FrmLogin _login;
+        private readonly SingleInstanceForm _singleInstance = new SingleInstanceForm();
 
-        public FrmMain()
+        public FrmMain(FrmLogin login)
         {
             InitializeComponent();
             _connection.ConnectionString = DatabaseHelper.GetConnection();
+            _login = login;
             _helper.CreateDirectory();
             LoadListOfStudents();
+            LoadListOfProfessionals();
             LoadRegularStudents();
             LoadAssociateStudents();
-            LoadRegularStudents();
-            LoadListOfProfessionals();
+            LoadProfessionals();
+            LoadProfessionalsLifeTime();
+            LoadProfessionalsTransferee();
+            LoadAssociateProfessionals();
+            LoadAssociateProfessionalsLifeTime();
+            LoadAssociateProfessionalsTransferee();
         }
 
         #region Clear
@@ -101,6 +108,152 @@ namespace InformationManagementSystem
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to load the total of regular students " + ex.Message);
+            }
+        }
+
+        private void LoadProfessionals()
+        {
+            try
+            {
+                var isAssociate = "Regular";
+                var selectQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalStatus LIKE @ProfessionalStatus";
+                var associateCount = 0;
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("ProfessionalStatus", isAssociate);
+                associateCount = Convert.ToInt32(_command.ExecuteScalar());
+                tsslTotalProfessionals.Text = associateCount.ToString();
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the total of regular professionals " + ex.Message);
+            }
+        }
+
+        private void LoadProfessionalsLifeTime()
+        {
+            try
+            {
+                var isLifeTime = "Lifetime";
+                var isRegular = "Regular";
+                var selectQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalValidUntil LIKE @ProfessionalValidUntil AND ProfessionalStatus = @ProfessionalStatus";
+                var associateCount = 0;
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("ProfessionalValidUntil", isLifeTime);
+                _command.Parameters.AddWithValue("ProfessionalStatus", isRegular);
+                associateCount = Convert.ToInt32(_command.ExecuteScalar());
+                tsslTotalProLifetime.Text = associateCount.ToString();
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the total of professionals lifetime " + ex.Message);
+            }
+        }
+
+        private void LoadAssociateProfessionals()
+        {
+            try
+            {
+                var isAssociate = "Associate";
+                var selectQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalStatus LIKE @ProfessionalStatus";
+                var associateCount = 0;
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("ProfessionalStatus", isAssociate);
+                associateCount = Convert.ToInt32(_command.ExecuteScalar());
+                tsslTotalAssociatePro.Text = associateCount.ToString();
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the total of regular professionals " + ex.Message);
+            }
+        }
+
+        private void LoadAssociateProfessionalsLifeTime()
+        {
+            try
+            {
+                var isLifeTime = "Lifetime";
+                var isRegular = "Associate";
+                var selectQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalValidUntil LIKE @ProfessionalValidUntil AND ProfessionalStatus = @ProfessionalStatus";
+                var associateCount = 0;
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("ProfessionalValidUntil", isLifeTime);
+                _command.Parameters.AddWithValue("ProfessionalStatus", isRegular);
+                associateCount = Convert.ToInt32(_command.ExecuteScalar());
+                tsslTotalAssociateProLifetime.Text = associateCount.ToString();
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the total of professionals lifetime " + ex.Message);
+            }
+        }
+
+        private void LoadAssociateProfessionalsTransferee()
+        {
+            try
+            {
+                var isTransferee = "Yes";
+                var isRegular = "Associate";
+                var selectQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalIsTransferee LIKE @ProfessionalIsTransferee AND ProfessionalStatus = @ProfessionalStatus";
+                var associateCount = 0;
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("ProfessionalIsTransferee", isTransferee);
+                _command.Parameters.AddWithValue("ProfessionalStatus", isRegular);
+                associateCount = Convert.ToInt32(_command.ExecuteScalar());
+                tsslTotalAssociateProTransferee.Text = associateCount.ToString();
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the total of professionals transferee " + ex.Message);
+            }
+        }
+
+        private void LoadProfessionalsTransferee()
+        {
+            try
+            {
+                var isTransferee = "Yes";
+                var isRegular = "Regular";
+                var selectQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalIsTransferee LIKE @ProfessionalIsTransferee AND ProfessionalStatus = @ProfessionalStatus";
+                var associateCount = 0;
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("ProfessionalIsTransferee", isTransferee);
+                _command.Parameters.AddWithValue("ProfessionalStatus", isRegular);
+                associateCount = Convert.ToInt32(_command.ExecuteScalar());
+                tsslTotalTransferee.Text = associateCount.ToString();
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the total of professionals transferee " + ex.Message);
             }
         }
 
@@ -192,8 +345,7 @@ namespace InformationManagementSystem
 
         private void tspMenuStudent_Click(object sender, EventArgs e)
         {
-            var newStudents = new FrmNewStudent(this);
-            newStudents.Show();
+            _singleInstance.OpenForm(new FrmNewStudent(this));
         }
 
         #endregion AddNewStudent
@@ -248,7 +400,7 @@ namespace InformationManagementSystem
                 try
                 {
                     var rowIndex = 0;
-                    var _querySearch = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentFirstName LIKE @StudentFirstName";
+                    var _querySearch = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentFirstName LIKE @StudentFirstName ORDER BY tbl_StudentInformation.StudentID";
 
                     dgvStudents.Rows.Clear();
                     _connection.Open();
@@ -290,7 +442,7 @@ namespace InformationManagementSystem
                 {
                     var rowIndex = 0;
                     var isTransferee = "Yes";
-                    var _querySearch = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentFirstName LIKE @StudentFirstName AND tbl_StudentInformation.StudentIsTransferee=@StudentIsTransferee";
+                    var _querySearch = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentFirstName LIKE @StudentFirstName AND tbl_StudentInformation.StudentIsTransferee=@StudentIsTransferee ORDER BY tbl_StudentInformation.StudentID";
 
                     dgvStudents.Rows.Clear();
                     _connection.Open();
@@ -332,7 +484,7 @@ namespace InformationManagementSystem
                 try
                 {
                     var rowIndex = 0;
-                    var _querySearch = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentFirstName LIKE @StudentFirstName AND tbl_StudentInformation.StudentStatus=@StudentStatus";
+                    var _querySearch = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentFirstName LIKE @StudentFirstName AND tbl_StudentInformation.StudentStatus=@StudentStatus ORDER BY tbl_StudentInformation.StudentID";
 
                     dgvStudents.Rows.Clear();
                     _connection.Open();
@@ -490,7 +642,10 @@ namespace InformationManagementSystem
             {
                 try
                 {
-                    var newStudent = new FrmNewStudent(this);
+                    var newStudent = new FrmNewStudent(this)
+                    {
+                        Text = "Full Information of " + tbxStudentBasicFirstName.Text
+                    };
                     var _querySearch = "SELECT tbl_StudentInformation.* FROM tbl_StudentInformation WHERE StudentID LIKE @STUDENTID";
 
                     _connection.Open();
@@ -571,7 +726,7 @@ namespace InformationManagementSystem
                 {
                     dgvStudents.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation";
+                    var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation ORDER BY tbl_StudentInformation.StudentID";
 
                     _connection.Open();
                     _command.Connection = _connection;
@@ -611,7 +766,7 @@ namespace InformationManagementSystem
                 {
                     dgvStudents.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentIsTransferee=@StudentIsTransferee";
+                    var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentIsTransferee=@StudentIsTransferee ORDER BY tbl_StudentInformation.StudentID";
 
                     _connection.Open();
                     _command.Connection = _connection;
@@ -652,7 +807,7 @@ namespace InformationManagementSystem
                 {
                     dgvStudents.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentStatus=@StudentStatus";
+                    var selectQuary = "SELECT tbl_StudentInformation.StudentID, tbl_StudentInformation.StudentFirstName, tbl_StudentInformation.StudentLastName, tbl_StudentInformation.StudentEmailAddress, tbl_StudentInformation.StudentContactNumber, tbl_StudentInformation.StudentPresentAddress, tbl_StudentInformation.StudentStatus, tbl_StudentInformation.StudentDateSigned, tbl_StudentInformation.StudentValidUntil, tbl_StudentInformation.StudentIsActive, tbl_StudentInformation.StudentCourse, tbl_StudentInformation.StudentYear, tbl_StudentInformation.StudentSpecialization, tbl_StudentInformation.StudentIsTransferee FROM tbl_StudentInformation WHERE tbl_StudentInformation.StudentStatus=@StudentStatus ORDER BY tbl_StudentInformation.StudentID";
 
                     _connection.Open();
                     _command.Connection = _connection;
@@ -734,6 +889,7 @@ namespace InformationManagementSystem
                         else
                             return;
 
+                        LoadListOfProfessionals();
                         ClearFields();
                     }
                     catch (Exception)
@@ -788,8 +944,7 @@ namespace InformationManagementSystem
 
         private void tspMenuProfessional_Click(object sender, EventArgs e)
         {
-            var professional = new FrmNewProfessional(this);
-            professional.Show();
+            _singleInstance.OpenForm(new FrmNewProfessional(this));
         }
 
         private void dgvProfessionals_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -859,7 +1014,7 @@ namespace InformationManagementSystem
                 newProfessional.cbxProfessionalCurrentEmployer.Enabled = false;
                 newProfessional.cbxProfessionalJobTitle.Enabled = false;
                 newProfessional.tbxProfessionalEmployeeAddress.Enabled = false;
-                newProfessional.cbxProfessionalSchool.Enabled = false;
+                newProfessional.cbxProfessionalTertiarySchool.Enabled = false;
                 newProfessional.tbxProfessionalSpecializations.Enabled = false;
                 newProfessional.cbxProfessionalDegree.Enabled = false;
                 newProfessional.dtpProfessionalYearGraduated.Enabled = false;
@@ -905,8 +1060,8 @@ namespace InformationManagementSystem
                         newProfessional.tbxProfessionalPresentAddress.Text = _reader["ProfessionalPresentAddress"].ToString();
                         newProfessional.cbxProfessionalCurrentEmployer.Text = _reader["ProfessionalCurrentEmployer"].ToString();
                         newProfessional.cbxProfessionalJobTitle.Text = _reader["ProfessionalJobTitle"].ToString();
-                        newProfessional.tbxProfessionalEmployeeAddress.Text = _reader["ProfessionalEmployerAddress"].ToString();
-                        newProfessional.cbxProfessionalSchool.Text = _reader["ProfessionalSchool"].ToString();
+                        newProfessional.cbxProfessionalCurrentEmployer.Text = _reader["ProfessionalEmployerAddress"].ToString();
+                        newProfessional.cbxProfessionalTertiarySchool.Text = _reader["ProfessionalSchool"].ToString();
                         newProfessional.tbxProfessionalSpecializations.Text = _reader["ProfessionalSpecialization"].ToString();
                         newProfessional.cbxProfessionalDegree.Text = _reader["ProfessionalDegree"].ToString();
                         newProfessional.dtpProfessionalYearGraduated.Text = _reader["ProfessionalYearGraduated"].ToString();
@@ -977,8 +1132,6 @@ namespace InformationManagementSystem
 
         private void btnProfessionalBasicEdit_Click(object sender, EventArgs e)
         {
-
-
             if (string.IsNullOrWhiteSpace(tbxProfessionalBasicID.Text))
             {
                 MessageBox.Show("Select a member to view");
@@ -987,7 +1140,10 @@ namespace InformationManagementSystem
             {
                 try
                 {
-                    var newProfessional = new FrmNewProfessional(this);
+                    var newProfessional = new FrmNewProfessional(this)
+                    {
+                        Text = "Edit " + tbxProfessionalBasicFirstName.Text
+                    };
                     var _querySearch = "SELECT tbl_ProfessionalInformation.* FROM tbl_ProfessionalInformation WHERE ProfessionalID LIKE @ProfessionalID";
 
                     _connection.Open();
@@ -1012,8 +1168,8 @@ namespace InformationManagementSystem
                         newProfessional.tbxProfessionalPresentAddress.Text = _reader["ProfessionalPresentAddress"].ToString();
                         newProfessional.cbxProfessionalCurrentEmployer.Text = _reader["ProfessionalCurrentEmployer"].ToString();
                         newProfessional.cbxProfessionalJobTitle.Text = _reader["ProfessionalJobTitle"].ToString();
-                        newProfessional.tbxProfessionalEmployeeAddress.Text = _reader["ProfessionalEmployerAddress"].ToString();
-                        newProfessional.cbxProfessionalSchool.Text = _reader["ProfessionalSchool"].ToString();
+                        newProfessional.cbxProfessionalCurrentEmployer.Text = _reader["ProfessionalEmployerAddress"].ToString();
+                        newProfessional.cbxProfessionalTertiarySchool.Text = _reader["ProfessionalSchool"].ToString();
                         newProfessional.tbxProfessionalSpecializations.Text = _reader["ProfessionalSpecialization"].ToString();
                         newProfessional.cbxProfessionalDegree.Text = _reader["ProfessionalDegree"].ToString();
                         newProfessional.dtpProfessionalYearGraduated.Text = _reader["ProfessionalYearGraduated"].ToString();
@@ -1102,7 +1258,7 @@ namespace InformationManagementSystem
                 {
                     dgvProfessionals.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName";
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName ORDER BY tbl_ProfessionalInformation.ProfessionalID";
 
                     _connection.Open();
                     _command.Connection = _connection;
@@ -1142,13 +1298,95 @@ namespace InformationManagementSystem
                 {
                     dgvProfessionals.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName AND tbl_ProfessionalInformation.ProfessionalIsTransferee=@ProfessionalIsTransferee";
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName AND tbl_ProfessionalInformation.ProfessionalIsTransferee=@ProfessionalIsTransferee ORDER BY tbl_ProfessionalInformation.ProfessionalID";
 
                     _connection.Open();
                     _command.Connection = _connection;
                     _command = new OleDbCommand(selectQuary, _connection);
                     _command.Parameters.AddWithValue("@ProfessionalFirstName", tbxProfessionalSearch.Text + "%");
                     _command.Parameters.AddWithValue("@ProfessionalIsTransferee", "Yes");
+                    _reader = _command.ExecuteReader();
+
+                    while (_reader.Read())
+                    {
+                        rowIndex++;
+                        dgvProfessionals.Rows.Add(rowIndex,
+                            _reader["ProfessionalID"].ToString(),
+                            _reader["ProfessionalFirstName"].ToString(),
+                            _reader["ProfessionalLastName"].ToString(),
+                            _reader["ProfessionalStatus"].ToString(),
+                            _reader["ProfessionalValidUntil"].ToString(),
+                            _reader["ProfessionalJobTitle"].ToString(),
+                            _reader["ProfessionalDegree"].ToString(),
+                            _reader["ProfessionalContactNumber"].ToString(),
+                            _reader["ProfessionalEmailAddress"].ToString(),
+                            _reader["ProfessionalPresentAddress"].ToString(),
+                            _reader["ProfessionalSpecialization"].ToString(),
+                            _reader["ProfessionalDateSigned"].ToString(),
+                            _reader["ProfessionalIsActive"].ToString(),
+                            _reader["ProfessionalIsTransferee"].ToString());
+                    }
+                    _connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load students list " + ex.Message);
+                }
+            }
+            else if (cbxProfessionalFilter.Text == "Lifetime")
+            {
+                try
+                {
+                    dgvProfessionals.Rows.Clear();
+                    var rowIndex = 0;
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName AND tbl_ProfessionalInformation.ProfessionalValidUntil=@ProfessionalValidUntil ORDER BY tbl_ProfessionalInformation.ProfessionalID";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(selectQuary, _connection);
+                    _command.Parameters.AddWithValue("@ProfessionalFirstName", tbxProfessionalSearch.Text + "%");
+                    _command.Parameters.AddWithValue("@ProfessionalValidUntil", cbxProfessionalFilter.Text);
+                    _reader = _command.ExecuteReader();
+
+                    while (_reader.Read())
+                    {
+                        rowIndex++;
+                        dgvProfessionals.Rows.Add(rowIndex,
+                            _reader["ProfessionalID"].ToString(),
+                            _reader["ProfessionalFirstName"].ToString(),
+                            _reader["ProfessionalLastName"].ToString(),
+                            _reader["ProfessionalStatus"].ToString(),
+                            _reader["ProfessionalValidUntil"].ToString(),
+                            _reader["ProfessionalJobTitle"].ToString(),
+                            _reader["ProfessionalDegree"].ToString(),
+                            _reader["ProfessionalContactNumber"].ToString(),
+                            _reader["ProfessionalEmailAddress"].ToString(),
+                            _reader["ProfessionalPresentAddress"].ToString(),
+                            _reader["ProfessionalSpecialization"].ToString(),
+                            _reader["ProfessionalDateSigned"].ToString(),
+                            _reader["ProfessionalIsActive"].ToString(),
+                            _reader["ProfessionalIsTransferee"].ToString());
+                    }
+                    _connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load students list " + ex.Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                    dgvProfessionals.Rows.Clear();
+                    var rowIndex = 0;
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalFirstName LIKE @ProfessionalFirstName AND tbl_ProfessionalInformation.ProfessionalStatus=@ProfessionalStatus ORDER BY tbl_ProfessionalInformation.ProfessionalID";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(selectQuary, _connection);
+                    _command.Parameters.AddWithValue("@ProfessionalFirstName", tbxProfessionalSearch.Text + "%");
+                    _command.Parameters.AddWithValue("@ProfessionalStatus", cbxProfessionalFilter.Text);
                     _reader = _command.ExecuteReader();
 
                     while (_reader.Read())
@@ -1193,7 +1431,7 @@ namespace InformationManagementSystem
                 {
                     dgvProfessionals.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation";
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation ORDER BY tbl_ProfessionalInformation.ProfessionalID";
 
                     _connection.Open();
                     _command.Connection = _connection;
@@ -1233,12 +1471,53 @@ namespace InformationManagementSystem
                 {
                     dgvProfessionals.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalIsTransferee=@ProfessionalIsTransferee";
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalIsTransferee=@ProfessionalIsTransferee ORDER BY tbl_ProfessionalInformation.ProfessionalID";
 
                     _connection.Open();
                     _command.Connection = _connection;
                     _command = new OleDbCommand(selectQuary, _connection);
                     _command.Parameters.AddWithValue("@ProfessionalIsTransferee", "Yes");
+                    _reader = _command.ExecuteReader();
+
+                    while (_reader.Read())
+                    {
+                        rowIndex++;
+                        dgvProfessionals.Rows.Add(rowIndex,
+                            _reader["ProfessionalID"].ToString(),
+                            _reader["ProfessionalFirstName"].ToString(),
+                            _reader["ProfessionalLastName"].ToString(),
+                            _reader["ProfessionalStatus"].ToString(),
+                            _reader["ProfessionalValidUntil"].ToString(),
+                            _reader["ProfessionalJobTitle"].ToString(),
+                            _reader["ProfessionalDegree"].ToString(),
+                            _reader["ProfessionalContactNumber"].ToString(),
+                            _reader["ProfessionalEmailAddress"].ToString(),
+                            _reader["ProfessionalPresentAddress"].ToString(),
+                            _reader["ProfessionalSpecialization"].ToString(),
+                            _reader["ProfessionalDateSigned"].ToString(),
+                            _reader["ProfessionalIsActive"].ToString(),
+                            _reader["ProfessionalIsTransferee"].ToString());
+                    }
+                    _reader.Close();
+                    _connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load students list " + ex.Message);
+                }
+            }
+            else if (cbxProfessionalFilter.Text == "Lifetime")
+            {
+                try
+                {
+                    dgvProfessionals.Rows.Clear();
+                    var rowIndex = 0;
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalValidUntil=@ProfessionalValidUntil ORDER BY tbl_ProfessionalInformation.ProfessionalID";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(selectQuary, _connection);
+                    _command.Parameters.AddWithValue("@ProfessionalValidUntil", cbxProfessionalFilter.Text);
                     _reader = _command.ExecuteReader();
 
                     while (_reader.Read())
@@ -1274,7 +1553,7 @@ namespace InformationManagementSystem
                 {
                     dgvProfessionals.Rows.Clear();
                     var rowIndex = 0;
-                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalStatus=@ProfessionalStatus";
+                    var selectQuary = "SELECT tbl_ProfessionalInformation.ProfessionalID, tbl_ProfessionalInformation.ProfessionalFirstName, tbl_ProfessionalInformation.ProfessionalLastName, tbl_ProfessionalInformation.ProfessionalContactNumber, tbl_ProfessionalInformation.ProfessionalPresentAddress, tbl_ProfessionalInformation.ProfessionalEmailAddress, tbl_ProfessionalInformation.ProfessionalJobTitle, tbl_ProfessionalInformation.ProfessionalSpecialization, tbl_ProfessionalInformation.ProfessionalStatus, tbl_ProfessionalInformation.ProfessionalDegree, tbl_ProfessionalInformation.ProfessionalDateSigned, tbl_ProfessionalInformation.ProfessionalValidUntil, tbl_ProfessionalInformation.ProfessionalIsActive, tbl_ProfessionalInformation.ProfessionalIsTransferee FROM tbl_ProfessionalInformation WHERE tbl_ProfessionalInformation.ProfessionalStatus=@ProfessionalStatus ORDER BY tbl_ProfessionalInformation.ProfessionalID";
 
                     _connection.Open();
                     _command.Connection = _connection;
@@ -1317,20 +1596,20 @@ namespace InformationManagementSystem
 
         private void tspAbout_Click(object sender, EventArgs e)
         {
-            var about = new FrmAbout();
-            about.Show();
+            _singleInstance.OpenForm(new FrmAbout());
         }
 
         #endregion About
 
-        #region Account
-
-        private void tspMenuAccount_Click(object sender, EventArgs e)
+        private void TspMenuLogout_Click(object sender, EventArgs e)
         {
-            var account = new FrmUserAccount();
-            account.Show();
+            Dispose();
+            _login.Show();
         }
 
-        #endregion Account
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _login.Dispose();
+        }
     }
 }

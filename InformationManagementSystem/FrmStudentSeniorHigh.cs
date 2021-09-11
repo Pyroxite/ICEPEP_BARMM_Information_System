@@ -19,25 +19,32 @@ namespace InformationManagementSystem
 
         private void btnCurrentAdd_Click(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(tbxSeniorHighSchool.Text))
             {
-                var _queryInsert = "INSERT INTO tbl_StudentHighSchool (HighSchoolName) VALUES (@HighSchoolName)";
+                MessageBox.Show("Missing fields");
+            }
+            else
+            {
+                try
+                {
+                    var _queryInsert = "INSERT INTO tbl_StudentHighSchool (HighSchoolName) VALUES (@HighSchoolName)";
 
-                _connection.Open();
-                _command.Connection = _connection;
-                _command = new OleDbCommand(_queryInsert, _connection);
-                _command.Parameters.AddWithValue("@HighSchoolName", tbxSeniorHighSchool.Text);
-                _command.ExecuteNonQuery();
-                _connection.Close();
-                _student.LoadSeniorHigh();
-                MessageBox.Show("New record has been added");
-                ClearFields();
-            }
-            catch (Exception ex)
-            {
-                _connection.Close();
-                MessageBox.Show("Connection Failed" + ex.Message);
-            }
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(_queryInsert, _connection);
+                    _command.Parameters.AddWithValue("@HighSchoolName", tbxSeniorHighSchool.Text);
+                    _command.ExecuteNonQuery();
+                    _connection.Close();
+                    _student.LoadSeniorHigh();
+                    MessageBox.Show("New record has been added");
+                    ClearFields();
+                }
+                catch (Exception ex)
+                {
+                    _connection.Close();
+                    MessageBox.Show("Connection Failed" + ex.Message);
+                }
+            } 
         }
 
         private void ClearFields()

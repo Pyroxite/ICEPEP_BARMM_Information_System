@@ -763,7 +763,7 @@ namespace InformationManagementSystem
             this.MinimumSize = new System.Drawing.Size(975, 583);
             this.Name = "FrmNewStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Student";
+            this.Text = "New Student";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoIncrementID.cs" />
-    <Compile Include="CheckDuplicateID.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DirectoryHelper.cs" />
     <Compile Include="FrmAbout.cs">
@@ -63,11 +62,23 @@
     <Compile Include="FrmProCurrentEmployer.Designer.cs">
       <DependentUpon>FrmProCurrentEmployer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmProJobTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProJobTitle.Designer.cs">
+      <DependentUpon>FrmProJobTitle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProSchoolTertiary.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmProSchoolTertiary.Designer.cs">
       <DependentUpon>FrmProSchoolTertiary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProTertiary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProTertiary.Designer.cs">
+      <DependentUpon>FrmProTertiary.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmStudentCurrentSchool.cs">
       <SubType>Form</SubType>
@@ -99,12 +110,6 @@
     <Compile Include="FrmStudentSeniorHigh.Designer.cs">
       <DependentUpon>FrmStudentSeniorHigh.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmUserAccount.Designer.cs">
-      <DependentUpon>FrmUserAccount.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +119,7 @@
     <Compile Include="ProfessionalExpirationDate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleInstanceForm.cs" />
     <Compile Include="StudentExpirationDate.cs" />
     <EmbeddedResource Include="FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
@@ -121,8 +127,14 @@
     <EmbeddedResource Include="FrmProCurrentEmployer.resx">
       <DependentUpon>FrmProCurrentEmployer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmProJobTitle.resx">
+      <DependentUpon>FrmProJobTitle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProSchoolTertiary.resx">
       <DependentUpon>FrmProSchoolTertiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProTertiary.resx">
+      <DependentUpon>FrmProTertiary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStudentCurrentSchool.resx">
       <DependentUpon>FrmStudentCurrentSchool.cs</DependentUpon>
@@ -138,9 +150,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStudentSeniorHigh.resx">
       <DependentUpon>FrmStudentSeniorHigh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserAccount.resx">
-      <DependentUpon>FrmUserAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

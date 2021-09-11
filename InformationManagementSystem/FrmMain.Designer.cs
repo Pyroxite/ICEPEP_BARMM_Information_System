@@ -158,19 +158,26 @@ namespace InformationManagementSystem
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tspAbout = new System.Windows.Forms.ToolStripButton();
             this.tspUser = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tspMenuAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.tspMenuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.stsMembers = new System.Windows.Forms.StatusStrip();
-            this.tsslStudents = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslRegularStudents = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslTotalStudents = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslAssociateStudents = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslTotalAssociateStudents = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslSeparatorOne = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslProfessionals = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslTotalProfessionals = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslAssociateProfessionals = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslTotalAssociateProfessionals = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslTransferee = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslProLifetime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslTotalProLifetime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslProTransferee = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslTotalTransferee = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslSeparatorTwo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslAssociateProfessionals = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslTotalAssociatePro = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslAssociateProfessionalLifeTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslTotalAssociateProLifetime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslAssociateProTransferee = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslTotalAssociateProTransferee = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.tbcMain.SuspendLayout();
@@ -1136,7 +1143,7 @@ namespace InformationManagementSystem
             // 
             // btnProfessionalBasicViewFull
             // 
-            this.btnProfessionalBasicViewFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProfessionalBasicViewFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnProfessionalBasicViewFull.Location = new System.Drawing.Point(17, 555);
             this.btnProfessionalBasicViewFull.Name = "btnProfessionalBasicViewFull";
             this.btnProfessionalBasicViewFull.Size = new System.Drawing.Size(159, 23);
@@ -1159,12 +1166,11 @@ namespace InformationManagementSystem
             // 
             // cbxProfessionalFilter
             // 
+            this.cbxProfessionalFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxProfessionalFilter.FormattingEnabled = true;
             this.cbxProfessionalFilter.Items.AddRange(new object[] {
-            "Regular One Year",
-            "Regular Three Year",
-            "Associate One Year",
-            "Associate Three Year",
+            "Regular",
+            "Associate",
             "Lifetime",
             "Transferee"});
             this.cbxProfessionalFilter.Location = new System.Drawing.Point(621, 14);
@@ -1531,7 +1537,6 @@ namespace InformationManagementSystem
             // 
             this.tspUser.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tspUser.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspMenuAccount,
             this.tspMenuLogout});
             this.tspUser.Image = ((System.Drawing.Image)(resources.GetObject("tspUser.Image")));
             this.tspUser.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1540,32 +1545,34 @@ namespace InformationManagementSystem
             this.tspUser.Size = new System.Drawing.Size(70, 30);
             this.tspUser.Text = "admin";
             // 
-            // tspMenuAccount
-            // 
-            this.tspMenuAccount.Name = "tspMenuAccount";
-            this.tspMenuAccount.Size = new System.Drawing.Size(125, 22);
-            this.tspMenuAccount.Text = "Accounts";
-            this.tspMenuAccount.Click += new System.EventHandler(this.tspMenuAccount_Click);
-            // 
             // tspMenuLogout
             // 
             this.tspMenuLogout.Name = "tspMenuLogout";
-            this.tspMenuLogout.Size = new System.Drawing.Size(125, 22);
+            this.tspMenuLogout.Size = new System.Drawing.Size(113, 22);
             this.tspMenuLogout.Text = "Logout";
+            this.tspMenuLogout.Click += new System.EventHandler(this.TspMenuLogout_Click);
             // 
             // stsMembers
             // 
             this.stsMembers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslStudents,
+            this.tsslRegularStudents,
             this.tsslTotalStudents,
             this.tsslAssociateStudents,
             this.tsslTotalAssociateStudents,
+            this.tsslSeparatorOne,
             this.tsslProfessionals,
             this.tsslTotalProfessionals,
+            this.tsslProLifetime,
+            this.tsslTotalProLifetime,
+            this.tsslProTransferee,
+            this.tsslTotalTransferee,
+            this.tsslSeparatorTwo,
             this.tsslAssociateProfessionals,
-            this.tsslTotalAssociateProfessionals,
-            this.tsslTransferee,
-            this.tsslTotalTransferee});
+            this.tsslTotalAssociatePro,
+            this.tsslAssociateProfessionalLifeTime,
+            this.tsslTotalAssociateProLifetime,
+            this.tsslAssociateProTransferee,
+            this.tsslTotalAssociateProTransferee});
             this.stsMembers.Location = new System.Drawing.Point(0, 659);
             this.stsMembers.Name = "stsMembers";
             this.stsMembers.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -1574,14 +1581,14 @@ namespace InformationManagementSystem
             this.stsMembers.TabIndex = 2;
             this.stsMembers.Text = "Status of Members";
             // 
-            // tsslStudents
+            // tsslRegularStudents
             // 
-            this.tsslStudents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslStudents.Image = ((System.Drawing.Image)(resources.GetObject("tsslStudents.Image")));
-            this.tsslStudents.Margin = new System.Windows.Forms.Padding(5, 3, 0, 2);
-            this.tsslStudents.Name = "tsslStudents";
-            this.tsslStudents.Size = new System.Drawing.Size(76, 17);
-            this.tsslStudents.Text = "Students:";
+            this.tsslRegularStudents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslRegularStudents.Image = ((System.Drawing.Image)(resources.GetObject("tsslRegularStudents.Image")));
+            this.tsslRegularStudents.Margin = new System.Windows.Forms.Padding(5, 3, 0, 2);
+            this.tsslRegularStudents.Name = "tsslRegularStudents";
+            this.tsslRegularStudents.Size = new System.Drawing.Size(122, 17);
+            this.tsslRegularStudents.Text = "Regular Students:";
             // 
             // tsslTotalStudents
             // 
@@ -1593,23 +1600,32 @@ namespace InformationManagementSystem
             // tsslAssociateStudents
             // 
             this.tsslAssociateStudents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslAssociateStudents.Margin = new System.Windows.Forms.Padding(40, 3, 0, 2);
+            this.tsslAssociateStudents.Image = ((System.Drawing.Image)(resources.GetObject("tsslAssociateStudents.Image")));
+            this.tsslAssociateStudents.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.tsslAssociateStudents.Name = "tsslAssociateStudents";
-            this.tsslAssociateStudents.Size = new System.Drawing.Size(115, 17);
+            this.tsslAssociateStudents.Size = new System.Drawing.Size(131, 17);
             this.tsslAssociateStudents.Text = "Associate Students:";
             // 
             // tsslTotalAssociateStudents
             // 
             this.tsslTotalAssociateStudents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslTotalAssociateStudents.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.tsslTotalAssociateStudents.Name = "tsslTotalAssociateStudents";
             this.tsslTotalAssociateStudents.Size = new System.Drawing.Size(28, 17);
             this.tsslTotalAssociateStudents.Text = "255";
+            // 
+            // tsslSeparatorOne
+            // 
+            this.tsslSeparatorOne.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslSeparatorOne.Name = "tsslSeparatorOne";
+            this.tsslSeparatorOne.Size = new System.Drawing.Size(11, 17);
+            this.tsslSeparatorOne.Text = "|";
             // 
             // tsslProfessionals
             // 
             this.tsslProfessionals.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsslProfessionals.Image = ((System.Drawing.Image)(resources.GetObject("tsslProfessionals.Image")));
-            this.tsslProfessionals.Margin = new System.Windows.Forms.Padding(40, 3, 0, 2);
+            this.tsslProfessionals.Margin = new System.Windows.Forms.Padding(10, 3, 0, 2);
             this.tsslProfessionals.Name = "tsslProfessionals";
             this.tsslProfessionals.Size = new System.Drawing.Size(98, 17);
             this.tsslProfessionals.Text = "Professionals:";
@@ -1621,35 +1637,89 @@ namespace InformationManagementSystem
             this.tsslTotalProfessionals.Size = new System.Drawing.Size(28, 17);
             this.tsslTotalProfessionals.Text = "255";
             // 
-            // tsslAssociateProfessionals
+            // tsslProLifetime
             // 
-            this.tsslAssociateProfessionals.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslAssociateProfessionals.Margin = new System.Windows.Forms.Padding(40, 3, 0, 2);
-            this.tsslAssociateProfessionals.Name = "tsslAssociateProfessionals";
-            this.tsslAssociateProfessionals.Size = new System.Drawing.Size(137, 17);
-            this.tsslAssociateProfessionals.Text = "Associate Professionals:";
+            this.tsslProLifetime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslProLifetime.Image = ((System.Drawing.Image)(resources.GetObject("tsslProLifetime.Image")));
+            this.tsslProLifetime.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.tsslProLifetime.Name = "tsslProLifetime";
+            this.tsslProLifetime.Size = new System.Drawing.Size(98, 17);
+            this.tsslProLifetime.Text = "Pro. Lifetime:";
             // 
-            // tsslTotalAssociateProfessionals
+            // tsslTotalProLifetime
             // 
-            this.tsslTotalAssociateProfessionals.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslTotalAssociateProfessionals.Name = "tsslTotalAssociateProfessionals";
-            this.tsslTotalAssociateProfessionals.Size = new System.Drawing.Size(28, 17);
-            this.tsslTotalAssociateProfessionals.Text = "255";
+            this.tsslTotalProLifetime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslTotalProLifetime.Name = "tsslTotalProLifetime";
+            this.tsslTotalProLifetime.Size = new System.Drawing.Size(28, 17);
+            this.tsslTotalProLifetime.Text = "255";
             // 
-            // tsslTransferee
+            // tsslProTransferee
             // 
-            this.tsslTransferee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslTransferee.Margin = new System.Windows.Forms.Padding(40, 3, 0, 2);
-            this.tsslTransferee.Name = "tsslTransferee";
-            this.tsslTransferee.Size = new System.Drawing.Size(70, 17);
-            this.tsslTransferee.Text = "Transferee:";
+            this.tsslProTransferee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslProTransferee.Image = ((System.Drawing.Image)(resources.GetObject("tsslProTransferee.Image")));
+            this.tsslProTransferee.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.tsslProTransferee.Name = "tsslProTransferee";
+            this.tsslProTransferee.Size = new System.Drawing.Size(111, 17);
+            this.tsslProTransferee.Text = "Pro. Transferee:";
             // 
             // tsslTotalTransferee
             // 
             this.tsslTotalTransferee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslTotalTransferee.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.tsslTotalTransferee.Name = "tsslTotalTransferee";
             this.tsslTotalTransferee.Size = new System.Drawing.Size(28, 17);
             this.tsslTotalTransferee.Text = "255";
+            // 
+            // tsslSeparatorTwo
+            // 
+            this.tsslSeparatorTwo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslSeparatorTwo.Name = "tsslSeparatorTwo";
+            this.tsslSeparatorTwo.Size = new System.Drawing.Size(11, 17);
+            this.tsslSeparatorTwo.Text = "|";
+            // 
+            // tsslAssociateProfessionals
+            // 
+            this.tsslAssociateProfessionals.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslAssociateProfessionals.Name = "tsslAssociateProfessionals";
+            this.tsslAssociateProfessionals.Size = new System.Drawing.Size(87, 17);
+            this.tsslAssociateProfessionals.Text = "Associate Pro.:";
+            // 
+            // tsslTotalAssociatePro
+            // 
+            this.tsslTotalAssociatePro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslTotalAssociatePro.Name = "tsslTotalAssociatePro";
+            this.tsslTotalAssociatePro.Size = new System.Drawing.Size(28, 17);
+            this.tsslTotalAssociatePro.Text = "255";
+            // 
+            // tsslAssociateProfessionalLifeTime
+            // 
+            this.tsslAssociateProfessionalLifeTime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslAssociateProfessionalLifeTime.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.tsslAssociateProfessionalLifeTime.Name = "tsslAssociateProfessionalLifeTime";
+            this.tsslAssociateProfessionalLifeTime.Size = new System.Drawing.Size(113, 17);
+            this.tsslAssociateProfessionalLifeTime.Text = "Asso. Pro. Lifetime:";
+            // 
+            // tsslTotalAssociateProLifetime
+            // 
+            this.tsslTotalAssociateProLifetime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslTotalAssociateProLifetime.Name = "tsslTotalAssociateProLifetime";
+            this.tsslTotalAssociateProLifetime.Size = new System.Drawing.Size(28, 17);
+            this.tsslTotalAssociateProLifetime.Text = "255";
+            // 
+            // tsslAssociateProTransferee
+            // 
+            this.tsslAssociateProTransferee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslAssociateProTransferee.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.tsslAssociateProTransferee.Name = "tsslAssociateProTransferee";
+            this.tsslAssociateProTransferee.Size = new System.Drawing.Size(126, 17);
+            this.tsslAssociateProTransferee.Text = "Asso. Pro. Transferee:";
+            // 
+            // tsslTotalAssociateProTransferee
+            // 
+            this.tsslTotalAssociateProTransferee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsslTotalAssociateProTransferee.Name = "tsslTotalAssociateProTransferee";
+            this.tsslTotalAssociateProTransferee.Size = new System.Drawing.Size(28, 17);
+            this.tsslTotalAssociateProTransferee.Text = "255";
             // 
             // panel1
             // 
@@ -1682,6 +1752,7 @@ namespace InformationManagementSystem
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ICEPEP BARMM | Information Management System";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.tbcMain.ResumeLayout(false);
             this.tbpStudents.ResumeLayout(false);
             this.scnMain.Panel1.ResumeLayout(false);
@@ -1735,7 +1806,7 @@ namespace InformationManagementSystem
         private System.Windows.Forms.ToolStripMenuItem tspMenuStudent;
         private System.Windows.Forms.ToolStripMenuItem tspMenuProfessional;
         private System.Windows.Forms.StatusStrip stsMembers;
-        private System.Windows.Forms.ToolStripStatusLabel tsslStudents;
+        private System.Windows.Forms.ToolStripStatusLabel tsslRegularStudents;
         private System.Windows.Forms.TabPage tbpStudents;
         private System.Windows.Forms.TabPage tbpProfessionals;
         private System.Windows.Forms.Panel panel1;
@@ -1765,8 +1836,6 @@ namespace InformationManagementSystem
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox chxStudentBasicActive;
         private System.Windows.Forms.TextBox tbxStudentBasicPresentAddress;
-        private System.Windows.Forms.ToolStripDropDownButton tspUser;
-        private System.Windows.Forms.ToolStripMenuItem tspMenuAccount;
         private System.Windows.Forms.ToolStripMenuItem tspMenuLogout;
         private System.Windows.Forms.ToolStripStatusLabel tsslTotalStudents;
         private System.Windows.Forms.ToolStripStatusLabel tsslAssociateStudents;
@@ -1785,9 +1854,9 @@ namespace InformationManagementSystem
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociateStudents;
         private System.Windows.Forms.ToolStripStatusLabel tsslTotalProfessionals;
-        private System.Windows.Forms.ToolStripStatusLabel tsslAssociateProfessionals;
-        private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociateProfessionals;
-        private System.Windows.Forms.ToolStripStatusLabel tsslTransferee;
+        private System.Windows.Forms.ToolStripStatusLabel tsslProLifetime;
+        private System.Windows.Forms.ToolStripStatusLabel tsslTotalProLifetime;
+        private System.Windows.Forms.ToolStripStatusLabel tsslProTransferee;
         private System.Windows.Forms.ToolStripStatusLabel tsslTotalTransferee;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbxStudentBasicYear;
@@ -1865,6 +1934,15 @@ namespace InformationManagementSystem
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.Button btnProfessionalClearFilter;
         private System.Windows.Forms.ComboBox cbxProfessionalFilter;
+        private System.Windows.Forms.ToolStripStatusLabel tsslSeparatorOne;
+        public System.Windows.Forms.ToolStripDropDownButton tspUser;
+        private System.Windows.Forms.ToolStripStatusLabel tsslSeparatorTwo;
+        private System.Windows.Forms.ToolStripStatusLabel tsslAssociateProfessionals;
+        private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociatePro;
+        private System.Windows.Forms.ToolStripStatusLabel tsslAssociateProfessionalLifeTime;
+        private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociateProLifetime;
+        private System.Windows.Forms.ToolStripStatusLabel tsslAssociateProTransferee;
+        private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociateProTransferee;
     }
 }
 

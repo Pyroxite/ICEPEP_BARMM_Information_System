@@ -10,17 +10,24 @@ namespace InformationManagementSystem
     {
         private readonly OleDbConnection _connection = new OleDbConnection();
         private OleDbCommand _command = new OleDbCommand();
+        private OleDbDataReader _reader;
         private readonly FrmMain _main;
+        private readonly SingleInstanceForm _singleInstance = new SingleInstanceForm();
 
         public FrmNewProfessional(FrmMain main)
         {
             InitializeComponent();
             _connection.ConnectionString = DatabaseHelper.GetConnection();
+            _main = main;
             LockDateTime();
             AutoIncrementProfessioanlID();
-            _main = main;
+            LoadJobTitle();
+            LoadCurrentEmployerAndAddress();
+            LoadTertiarySchool();
+            LoadDegree();
             lblProfessionalDateID.Text = DateTime.Now.ToString("yyyy");
             tbxProfessionalRegionChapter.Text = "BARMM";
+            btnProfessionalUpdate.Enabled = false;
         }
 
         private void AutoIncrementProfessioanlID()
@@ -53,6 +60,110 @@ namespace InformationManagementSystem
             dtpProfessionalDateSigned.Enabled = true;
         }
 
+        public void LoadDegree()
+        {
+            try
+            {
+                cbxProfessionalDegree.Items.Clear();
+
+                var selectQuary = "SELECT tbl_ProfessionalDegree.DegreeName FROM tbl_ProfessionalDegree";
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _reader = _command.ExecuteReader();
+
+                while (_reader.Read())
+                {
+                    cbxProfessionalDegree.Items.Add(_reader["DegreeName"].ToString());
+                }
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to load current school list");
+            }
+        }
+
+        public void LoadTertiarySchool()
+        {
+            try
+            {
+                cbxProfessionalTertiarySchool.Items.Clear();
+
+                var selectQuary = "SELECT tbl_ProfessionalTertiarySchool.TertiarySchoolName FROM tbl_ProfessionalTertiarySchool";
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _reader = _command.ExecuteReader();
+
+                while (_reader.Read())
+                {
+                    cbxProfessionalTertiarySchool.Items.Add(_reader["TertiarySchoolName"].ToString());
+                }
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to load current school list");
+            }
+        }
+
+        public void LoadJobTitle()
+        {
+            try
+            {
+                cbxProfessionalJobTitle.Items.Clear();
+
+                var selectQuary = "SELECT tbl_ProfessionalJobTitle.JobTitle FROM tbl_ProfessionalJobTitle WHERE JobITitleD";
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _reader = _command.ExecuteReader();
+
+                while (_reader.Read())
+                {
+                    cbxProfessionalJobTitle.Items.Add(_reader["JobTitle"].ToString());
+                }
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to load current school list");
+            }
+        }
+
+        public void LoadCurrentEmployerAndAddress()
+        {
+            try
+            {
+                cbxProfessionalCurrentEmployer.Items.Clear();
+
+                var selectQuary = "SELECT tbl_ProfessionalEmployer.EmployerName FROM tbl_ProfessionalEmployer WHERE EmployerID";
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _reader = _command.ExecuteReader();
+
+                while (_reader.Read())
+                {
+                    cbxProfessionalCurrentEmployer.Items.Add(_reader["EmployerName"].ToString());
+                }
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to load current school list");
+            }
+        }
+
         private void ClearFields()
         {
             tbxProfessionalFirstName.Clear();
@@ -77,9 +188,9 @@ namespace InformationManagementSystem
 
             cbxProfessionalCurrentEmployer.Text = "";
             cbxProfessionalJobTitle.Text = "";
-            tbxProfessionalEmployeeAddress.Clear();
+            tbxProfessionalEmployeeAddress.Text = "";
             tbxProfessionalSpecializations.Clear();
-            cbxProfessionalSchool.Text = "";
+            cbxProfessionalTertiarySchool.Text = "";
             cbxProfessionalDegree.Text = "";
             dtpProfessionalYearGraduated.Value = DateTime.Now;
             dtpProfessionalDateSigned.Value = DateTime.Now;
@@ -92,16 +203,35 @@ namespace InformationManagementSystem
 
         public void InsertData()
         {
-            if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text) || string.IsNullOrWhiteSpace(tbxProfessionalFirstName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalMiddleName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalLastName.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmailAddress.Text) || string.IsNullOrWhiteSpace(tbxProfessionalRegionChapter.Text) || string.IsNullOrWhiteSpace(tbxProfessionalContact.Text) || string.IsNullOrWhiteSpace(tbxProfessionalPresentAddress.Text) || string.IsNullOrWhiteSpace(cbxProfessionalCurrentEmployer.Text) || string.IsNullOrWhiteSpace(cbxProfessionalJobTitle.Text) || string.IsNullOrWhiteSpace(tbxProfessionalEmployeeAddress.Text) || string.IsNullOrWhiteSpace(dtpProfessionalDateSigned.Text))
+            if (string.IsNullOrWhiteSpace(tbxProfessionalID.Text))
             {
                 MessageBox.Show("Some fields are missing");
-                return;
             }
             else
             {
                 try
                 {
                     var professionalID = lblProfessionalBarmmID.Text + lblProfessionalIndentOne.Text + lblProfessionalDateID.Text + lblProfessionalIndentTwo.Text + tbxProfessionalID.Text;
+                    var checkQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalID = @ProfessionalID";
+                    var queryID = "@ProfessionalID";
+
+                    _connection.Open();
+                    _command.Connection = _connection;
+                    _command = new OleDbCommand(checkQuary, _connection);
+                    _command.Parameters.AddWithValue(queryID, professionalID);
+
+                    var exist = Convert.ToInt32(_command.ExecuteScalar());
+
+                    if (exist == 0)
+                    {
+                        _connection.Close();
+                    }
+                    else
+                    {
+                        _connection.Close();
+                        MessageBox.Show("This professional id is already exist");
+                        return;
+                    }
 
                     pbxProfessionalPicture.Image.Save(Application.StartupPath + @"\Pictures\Professional\" + professionalID + ".jpg");
 
@@ -173,7 +303,7 @@ namespace InformationManagementSystem
                     _command.Parameters.AddWithValue("@ProfessionalJobTitle", cbxProfessionalJobTitle.Text);
                     _command.Parameters.AddWithValue("@ProfessionalEmployerAddress", tbxProfessionalEmployeeAddress.Text);
                     _command.Parameters.AddWithValue("@ProfessionalSpecialization", tbxProfessionalSpecializations.Text);
-                    _command.Parameters.AddWithValue("@ProfessionalSchool", cbxProfessionalSchool.Text);
+                    _command.Parameters.AddWithValue("@ProfessionalSchool", cbxProfessionalTertiarySchool.Text);
                     _command.Parameters.AddWithValue("@ProfessionalDegree", cbxProfessionalDegree.Text);
                     _command.Parameters.AddWithValue("@ProfessionalYearGraduated", dtpProfessionalYearGraduated.Value.ToString("MM/dd/yyyy"));
 
@@ -216,21 +346,22 @@ namespace InformationManagementSystem
                 catch (Exception ex)
                 {
                     _connection.Close();
-                    MessageBox.Show("Connection Failed " + ex.Message);
+                    MessageBox.Show("Failed to add this member " + ex.Message);
                 }
             }
         }
 
         private void btnProfessionalSave_Click(object sender, EventArgs e)
         {
-            var checkQuary = "SELECT COUNT(*) FROM tbl_ProfessionalInformation WHERE ProfessionalID = @ProfessionalID";
-            var queryID = "@ProfessionalID";
-            var professionalID = lblProfessionalBarmmID.Text + lblProfessionalIndentOne.Text + lblProfessionalDateID.Text + lblProfessionalIndentTwo.Text + tbxProfessionalID.Text;
-            var checkID = new CheckDuplicateID();
-            checkID.CheckDuplicate(professionalID, checkQuary, queryID);
+            InsertData();
         }
 
         private void btnProfessionalUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateProfessionalMember();
+        }
+
+        private void UpdateProfessionalMember()
         {
             try
             {
@@ -262,7 +393,7 @@ namespace InformationManagementSystem
                 _command.Parameters.AddWithValue("@ProfessionalJobTitle", cbxProfessionalJobTitle.Text);
                 _command.Parameters.AddWithValue("@ProfessionalEmployerAddress", tbxProfessionalEmployeeAddress.Text);
                 _command.Parameters.AddWithValue("@ProfessionalSpecialization", tbxProfessionalSpecializations.Text);
-                _command.Parameters.AddWithValue("@ProfessionalSchool", cbxProfessionalSchool.Text);
+                _command.Parameters.AddWithValue("@ProfessionalSchool", cbxProfessionalTertiarySchool.Text);
                 _command.Parameters.AddWithValue("@ProfessionalDegree", cbxProfessionalDegree.Text);
                 _command.Parameters.AddWithValue("@ProfessionalYearGraduated", dtpProfessionalYearGraduated.Value.ToString("MM/dd/yyyy"));
                 _command.Parameters.AddWithValue("@ProfessionalID", existingID);
@@ -272,6 +403,7 @@ namespace InformationManagementSystem
                 _main.LoadListOfProfessionals();
                 ClearFields();
                 MessageBox.Show("This member has been updated");
+                Dispose();
             }
             catch (Exception)
             {
@@ -279,6 +411,7 @@ namespace InformationManagementSystem
                 MessageBox.Show("Failed to update");
             }
         }
+
         private void btnProfessioanlCancel_Click(object sender, EventArgs e)
         {
             Dispose();
@@ -461,6 +594,7 @@ namespace InformationManagementSystem
                 LockDateTime();
             }
         }
+
         private void chxProfessionalAssociate_CheckedChanged(object sender, EventArgs e)
         {
             if (chxProfessionalAssociate.Checked == true)
@@ -486,12 +620,52 @@ namespace InformationManagementSystem
                 LockDateTime();
             }
         }
-        #endregion
+
+        #endregion CheckBoxes
 
         private void btnProfessionalBrowse_Click(object sender, EventArgs e)
         {
             AddImage();
         }
 
+        private void BtnProfessionalAddCurrentEmployer_Click(object sender, EventArgs e)
+        {
+            _singleInstance.OpenForm(new FrmProCurrentEmployer(this));
+        }
+
+        private void CbxProfessionalCurrentEmployer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectQuary = "SELECT DISTINCT tbl_ProfessionalEmployer.EmployerAddress FROM tbl_ProfessionalEmployer WHERE tbl_ProfessionalEmployer.EmployerName LIKE @EmployerName";
+
+                _connection.Open();
+                _command.Connection = _connection;
+                _command = new OleDbCommand(selectQuary, _connection);
+                _command.Parameters.AddWithValue("@EmployerName", cbxProfessionalCurrentEmployer.Text);
+                _reader = _command.ExecuteReader();
+
+                while (_reader.Read())
+                {
+                    tbxProfessionalEmployeeAddress.Text = _reader["EmployerAddress"].ToString();
+                }
+                _reader.Close();
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to load current school address");
+            }
+        }
+
+        private void BtnProfessionalAddJobTitle_Click(object sender, EventArgs e)
+        {
+            _singleInstance.OpenForm(new FrmProJobTitle(this));
+        }
+
+        private void BtnProfessionalSchool_Click(object sender, EventArgs e)
+        {
+            _singleInstance.OpenForm(new FrmProSchoolTertiary(this));
+        }
     }
 }
