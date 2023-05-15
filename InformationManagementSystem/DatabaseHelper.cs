@@ -7,7 +7,7 @@ namespace InformationManagementSystem
     {
         public static string GetConnection()
         {
-            string _connection = @"Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + Application.StartupPath + @"\ICEPEP.mdb; Jet OLEDB:Database Password = 121798";
+            string _connection = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + Application.StartupPath + @"\ICEPEP.accdb; Jet OLEDB:Database Password = 121798";
 
             return _connection;
         }
