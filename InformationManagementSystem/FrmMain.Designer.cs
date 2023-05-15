@@ -288,8 +288,7 @@ namespace InformationManagementSystem
             // 
             // btnStudentBasicDelete
             // 
-            this.btnStudentBasicDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStudentBasicDelete.Location = new System.Drawing.Point(251, 555);
+            this.btnStudentBasicDelete.Location = new System.Drawing.Point(251, 452);
             this.btnStudentBasicDelete.Name = "btnStudentBasicDelete";
             this.btnStudentBasicDelete.Size = new System.Drawing.Size(58, 23);
             this.btnStudentBasicDelete.TabIndex = 169;
@@ -299,9 +298,7 @@ namespace InformationManagementSystem
             // 
             // btnStudentBasicEdit
             // 
-            this.btnStudentBasicEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStudentBasicEdit.Location = new System.Drawing.Point(184, 555);
+            this.btnStudentBasicEdit.Location = new System.Drawing.Point(184, 452);
             this.btnStudentBasicEdit.Name = "btnStudentBasicEdit";
             this.btnStudentBasicEdit.Size = new System.Drawing.Size(58, 23);
             this.btnStudentBasicEdit.TabIndex = 168;
@@ -548,8 +545,7 @@ namespace InformationManagementSystem
             // 
             // btnStudentBasicViewFull
             // 
-            this.btnStudentBasicViewFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStudentBasicViewFull.Location = new System.Drawing.Point(16, 555);
+            this.btnStudentBasicViewFull.Location = new System.Drawing.Point(16, 452);
             this.btnStudentBasicViewFull.Name = "btnStudentBasicViewFull";
             this.btnStudentBasicViewFull.Size = new System.Drawing.Size(159, 23);
             this.btnStudentBasicViewFull.TabIndex = 7;

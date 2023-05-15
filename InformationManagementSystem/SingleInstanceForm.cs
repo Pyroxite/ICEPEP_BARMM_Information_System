@@ -13,7 +13,7 @@ namespace InformationManagementSystem
 
             currentForm = form;
             form.BringToFront();
-            form.Show();
+            form.ShowDialog();
         }
     }
 }
