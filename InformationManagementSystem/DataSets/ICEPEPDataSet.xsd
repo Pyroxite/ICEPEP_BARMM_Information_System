@@ -771,6 +771,54 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbl_ProfessionalsListTableAdapter" GeneratorDataComponentClassName="tbl_ProfessionalsListTableAdapter" Name="tbl_ProfessionalsList" UserDataComponentName="tbl_ProfessionalsListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ICEPEPConnectionString (Settings)" DbObjectName="tbl_ProfessionalInformation" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ProfessionalID, ProfessionalFirstName, ProfessionalLastName, ProfessionalEmailAddress, ProfessionalJobTitle, ProfessionalDegree, ProfessionalValidUntil, ProfessionalIsTransferee
+FROM            tbl_ProfessionalInformation</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ProfessionalID" DataSetColumn="ProfessionalID" />
+              <Mapping SourceColumn="ProfessionalFirstName" DataSetColumn="ProfessionalFirstName" />
+              <Mapping SourceColumn="ProfessionalLastName" DataSetColumn="ProfessionalLastName" />
+              <Mapping SourceColumn="ProfessionalEmailAddress" DataSetColumn="ProfessionalEmailAddress" />
+              <Mapping SourceColumn="ProfessionalJobTitle" DataSetColumn="ProfessionalJobTitle" />
+              <Mapping SourceColumn="ProfessionalDegree" DataSetColumn="ProfessionalDegree" />
+              <Mapping SourceColumn="ProfessionalValidUntil" DataSetColumn="ProfessionalValidUntil" />
+              <Mapping SourceColumn="ProfessionalIsTransferee" DataSetColumn="ProfessionalIsTransferee" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbl_StudentsListTableAdapter" GeneratorDataComponentClassName="tbl_StudentsListTableAdapter" Name="tbl_StudentsList" UserDataComponentName="tbl_StudentsListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ICEPEPConnectionString (Settings)" DbObjectName="tbl_StudentInformation" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        StudentID, StudentFirstName, StudentLastName, StudentEmailAddress, StudentCourse, StudentYear, StudentIsTransferee, StudentValidUntil
+FROM            tbl_StudentInformation</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="StudentFirstName" DataSetColumn="StudentFirstName" />
+              <Mapping SourceColumn="StudentLastName" DataSetColumn="StudentLastName" />
+              <Mapping SourceColumn="StudentEmailAddress" DataSetColumn="StudentEmailAddress" />
+              <Mapping SourceColumn="StudentCourse" DataSetColumn="StudentCourse" />
+              <Mapping SourceColumn="StudentYear" DataSetColumn="StudentYear" />
+              <Mapping SourceColumn="StudentIsTransferee" DataSetColumn="StudentIsTransferee" />
+              <Mapping SourceColumn="StudentValidUntil" DataSetColumn="StudentValidUntil" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1239,6 +1287,130 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="tbl_ProfessionalsList" msprop:Generator_RowEvHandlerName="tbl_ProfessionalsListRowChangeEventHandler" msprop:Generator_RowDeletedName="tbl_ProfessionalsListRowDeleted" msprop:Generator_RowDeletingName="tbl_ProfessionalsListRowDeleting" msprop:Generator_RowEvArgName="tbl_ProfessionalsListRowChangeEvent" msprop:Generator_TablePropName="tbl_ProfessionalsList" msprop:Generator_RowChangedName="tbl_ProfessionalsListRowChanged" msprop:Generator_RowChangingName="tbl_ProfessionalsListRowChanging" msprop:Generator_TableClassName="tbl_ProfessionalsListDataTable" msprop:Generator_RowClassName="tbl_ProfessionalsListRow" msprop:Generator_TableVarName="tabletbl_ProfessionalsList" msprop:Generator_UserTableName="tbl_ProfessionalsList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProfessionalID" msprop:Generator_ColumnPropNameInRow="ProfessionalID" msprop:Generator_ColumnPropNameInTable="ProfessionalIDColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalID" msprop:Generator_UserColumnName="ProfessionalID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalFirstName" msprop:Generator_ColumnPropNameInRow="ProfessionalFirstName" msprop:Generator_ColumnPropNameInTable="ProfessionalFirstNameColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalFirstName" msprop:Generator_UserColumnName="ProfessionalFirstName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalLastName" msprop:Generator_ColumnPropNameInRow="ProfessionalLastName" msprop:Generator_ColumnPropNameInTable="ProfessionalLastNameColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalLastName" msprop:Generator_UserColumnName="ProfessionalLastName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalEmailAddress" msprop:Generator_ColumnPropNameInRow="ProfessionalEmailAddress" msprop:Generator_ColumnPropNameInTable="ProfessionalEmailAddressColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalEmailAddress" msprop:Generator_UserColumnName="ProfessionalEmailAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalJobTitle" msprop:Generator_ColumnPropNameInRow="ProfessionalJobTitle" msprop:Generator_ColumnPropNameInTable="ProfessionalJobTitleColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalJobTitle" msprop:Generator_UserColumnName="ProfessionalJobTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalDegree" msprop:Generator_ColumnPropNameInRow="ProfessionalDegree" msprop:Generator_ColumnPropNameInTable="ProfessionalDegreeColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalDegree" msprop:Generator_UserColumnName="ProfessionalDegree" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalValidUntil" msprop:Generator_ColumnPropNameInRow="ProfessionalValidUntil" msprop:Generator_ColumnPropNameInTable="ProfessionalValidUntilColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalValidUntil" msprop:Generator_UserColumnName="ProfessionalValidUntil" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProfessionalIsTransferee" msprop:Generator_ColumnPropNameInRow="ProfessionalIsTransferee" msprop:Generator_ColumnPropNameInTable="ProfessionalIsTransfereeColumn" msprop:Generator_ColumnVarNameInTable="columnProfessionalIsTransferee" msprop:Generator_UserColumnName="ProfessionalIsTransferee" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tbl_StudentsList" msprop:Generator_RowEvHandlerName="tbl_StudentsListRowChangeEventHandler" msprop:Generator_RowDeletedName="tbl_StudentsListRowDeleted" msprop:Generator_RowDeletingName="tbl_StudentsListRowDeleting" msprop:Generator_RowEvArgName="tbl_StudentsListRowChangeEvent" msprop:Generator_TablePropName="tbl_StudentsList" msprop:Generator_RowChangedName="tbl_StudentsListRowChanged" msprop:Generator_RowChangingName="tbl_StudentsListRowChanging" msprop:Generator_TableClassName="tbl_StudentsListDataTable" msprop:Generator_RowClassName="tbl_StudentsListRow" msprop:Generator_TableVarName="tabletbl_StudentsList" msprop:Generator_UserTableName="tbl_StudentsList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_UserColumnName="StudentID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentFirstName" msprop:Generator_ColumnPropNameInRow="StudentFirstName" msprop:Generator_ColumnPropNameInTable="StudentFirstNameColumn" msprop:Generator_ColumnVarNameInTable="columnStudentFirstName" msprop:Generator_UserColumnName="StudentFirstName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentLastName" msprop:Generator_ColumnPropNameInRow="StudentLastName" msprop:Generator_ColumnPropNameInTable="StudentLastNameColumn" msprop:Generator_ColumnVarNameInTable="columnStudentLastName" msprop:Generator_UserColumnName="StudentLastName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentEmailAddress" msprop:Generator_ColumnPropNameInRow="StudentEmailAddress" msprop:Generator_ColumnPropNameInTable="StudentEmailAddressColumn" msprop:Generator_ColumnVarNameInTable="columnStudentEmailAddress" msprop:Generator_UserColumnName="StudentEmailAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentCourse" msprop:Generator_ColumnPropNameInRow="StudentCourse" msprop:Generator_ColumnPropNameInTable="StudentCourseColumn" msprop:Generator_ColumnVarNameInTable="columnStudentCourse" msprop:Generator_UserColumnName="StudentCourse" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentYear" msprop:Generator_ColumnPropNameInRow="StudentYear" msprop:Generator_ColumnPropNameInTable="StudentYearColumn" msprop:Generator_ColumnVarNameInTable="columnStudentYear" msprop:Generator_UserColumnName="StudentYear" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentIsTransferee" msprop:Generator_ColumnPropNameInRow="StudentIsTransferee" msprop:Generator_ColumnPropNameInTable="StudentIsTransfereeColumn" msprop:Generator_ColumnVarNameInTable="columnStudentIsTransferee" msprop:Generator_UserColumnName="StudentIsTransferee" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentValidUntil" msprop:Generator_ColumnPropNameInRow="StudentValidUntil" msprop:Generator_ColumnPropNameInTable="StudentValidUntilColumn" msprop:Generator_ColumnVarNameInTable="columnStudentValidUntil" msprop:Generator_UserColumnName="StudentValidUntil" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1280,6 +1452,14 @@
     <xs:unique name="tbl_StudentYearLevel_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:tbl_StudentYearLevel" />
       <xs:field xpath="mstns:YearLevelID" />
+    </xs:unique>
+    <xs:unique name="tbl_ProfessionalsList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tbl_ProfessionalsList" />
+      <xs:field xpath="mstns:ProfessionalID" />
+    </xs:unique>
+    <xs:unique name="tbl_StudentsList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tbl_StudentsList" />
+      <xs:field xpath="mstns:StudentID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

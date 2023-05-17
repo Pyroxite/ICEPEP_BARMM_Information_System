@@ -1,12 +1,13 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ICEPEP")]
-[assembly: AssemblyDescription("This project has been created by Mr.Abdurrafih Abraham together with his team Mr.Ademar Sandangan and Mr.Hussien Ukkung, the sole purpose of the application is to store the data and to secure the data of the ICEPEP members.")]
+[assembly: AssemblyTitle("ICEPEP BARMM Information System")]
+[assembly: AssemblyDescription("The application's main purpose is to safeguard the data of ICEPEP members. Developed by Mr. Abdurrafih J. Abraham in collaboration with his team, Mr. Ademar S. Sandangan, and Mr. Hussein I. Uckung III.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sulu State College")]
 [assembly: AssemblyProduct("Information Management System")]
@@ -34,3 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]

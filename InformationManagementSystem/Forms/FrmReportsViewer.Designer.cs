@@ -28,21 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReportsViewer));
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblReportTitle = new System.Windows.Forms.Label();
+            this.StudentsReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // reportViewer
-            // 
-            this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "InformationManagementSystem.ReportStudents.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(0, 23);
-            this.reportViewer.Name = "reportViewer";
-            this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(1062, 686);
-            this.reportViewer.TabIndex = 0;
             // 
             // panel4
             // 
@@ -58,19 +49,30 @@
             // 
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.ForeColor = System.Drawing.Color.White;
-            this.lblReportTitle.Location = new System.Drawing.Point(3, 4);
+            this.lblReportTitle.Location = new System.Drawing.Point(450, 5);
             this.lblReportTitle.Name = "lblReportTitle";
             this.lblReportTitle.Size = new System.Drawing.Size(95, 13);
             this.lblReportTitle.TabIndex = 5;
             this.lblReportTitle.Text = "PRINT REPORTS";
+            // 
+            // StudentsReportViewer
+            // 
+            this.StudentsReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StudentsReportViewer.LocalReport.ReportEmbeddedResource = "InformationManagementSystem.Reports.ReportStudents.rdlc";
+            this.StudentsReportViewer.Location = new System.Drawing.Point(0, 23);
+            this.StudentsReportViewer.Name = "StudentsReportViewer";
+            this.StudentsReportViewer.ServerReport.BearerToken = null;
+            this.StudentsReportViewer.Size = new System.Drawing.Size(1062, 686);
+            this.StudentsReportViewer.TabIndex = 158;
             // 
             // FrmReportsViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 709);
-            this.Controls.Add(this.reportViewer);
+            this.Controls.Add(this.StudentsReportViewer);
             this.Controls.Add(this.panel4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmReportsViewer";
             this.Text = "Report Viewer";
             this.Load += new System.EventHandler(this.FrmReportsViewer_Load);
@@ -81,9 +83,8 @@
         }
 
         #endregion
-
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblReportTitle;
+        private Microsoft.Reporting.WinForms.ReportViewer StudentsReportViewer;
     }
 }

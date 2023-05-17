@@ -706,6 +706,7 @@ namespace InformationManagementSystem
                     newStudent.chxStudentTransferee.Enabled = false;
                     newStudent.dtpStudentDateSigned.Enabled = false;
                     newStudent.btnStudentSave.Enabled = false;
+                    newStudent.btnStudentUpdate.Enabled = true;
                     newStudent.Show();
                 }
                 catch (Exception ex)
@@ -1612,9 +1613,9 @@ namespace InformationManagementSystem
             //_login.Dispose();
         }
 
-        private void fullPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        private void fullPrintStudentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _singleInstance.OpenForm(new FrmReportsViewer("STUDENTS LIST"));
+            _singleInstance.OpenForm(new FrmReportsViewer("STUDENTS_FULL"));
         }
     }
 }
