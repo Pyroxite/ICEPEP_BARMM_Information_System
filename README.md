@@ -1,6 +1,6 @@
 # InformationManagementSystem
-ICEPEP Information Management System for BARMM chapter. the project is still not complete, some functionality hasn't been implemented yet.
+Information management system for ICEPEP for the BARMM chapter. Some functionality hasn't yet been added, hence the project is still not finished.
 
-No third-party framework included.
+No external framework is included.
 
-i use microsoft access database, since this project is running on single machine.
+As my project runs on a single machine, I utilize a Microsoft Access database.
