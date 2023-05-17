@@ -30,10 +30,10 @@ namespace InformationManagementSystem
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpStudents = new System.Windows.Forms.TabPage();
             this.scnMain = new System.Windows.Forms.SplitContainer();
@@ -151,6 +151,8 @@ namespace InformationManagementSystem
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tspPrint = new System.Windows.Forms.ToolStripDropDownButton();
             this.studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.associateStudentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.professionalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.associateProfessioanlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,7 +240,6 @@ namespace InformationManagementSystem
             this.scnMain.BackColor = System.Drawing.Color.WhiteSmoke;
             this.scnMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scnMain.IsSplitterFixed = true;
             this.scnMain.Location = new System.Drawing.Point(3, 3);
             this.scnMain.Name = "scnMain";
             // 
@@ -622,14 +623,14 @@ namespace InformationManagementSystem
             this.dgvStudents.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -648,14 +649,14 @@ namespace InformationManagementSystem
             this.Column7,
             this.studentIsTransferee});
             this.dgvStudents.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgvStudents.EnableHeadersVisualStyles = false;
             this.dgvStudents.Location = new System.Drawing.Point(16, 46);
             this.dgvStudents.Name = "dgvStudents";
@@ -880,7 +881,7 @@ namespace InformationManagementSystem
             // btnProfessionalBasicDelete
             // 
             this.btnProfessionalBasicDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProfessionalBasicDelete.Location = new System.Drawing.Point(249, 555);
+            this.btnProfessionalBasicDelete.Location = new System.Drawing.Point(248, 452);
             this.btnProfessionalBasicDelete.Name = "btnProfessionalBasicDelete";
             this.btnProfessionalBasicDelete.Size = new System.Drawing.Size(58, 23);
             this.btnProfessionalBasicDelete.TabIndex = 171;
@@ -892,7 +893,7 @@ namespace InformationManagementSystem
             // 
             this.btnProfessionalBasicEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProfessionalBasicEdit.Location = new System.Drawing.Point(182, 555);
+            this.btnProfessionalBasicEdit.Location = new System.Drawing.Point(181, 452);
             this.btnProfessionalBasicEdit.Name = "btnProfessionalBasicEdit";
             this.btnProfessionalBasicEdit.Size = new System.Drawing.Size(58, 23);
             this.btnProfessionalBasicEdit.TabIndex = 170;
@@ -1140,7 +1141,7 @@ namespace InformationManagementSystem
             // btnProfessionalBasicViewFull
             // 
             this.btnProfessionalBasicViewFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnProfessionalBasicViewFull.Location = new System.Drawing.Point(17, 555);
+            this.btnProfessionalBasicViewFull.Location = new System.Drawing.Point(16, 452);
             this.btnProfessionalBasicViewFull.Name = "btnProfessionalBasicViewFull";
             this.btnProfessionalBasicViewFull.Size = new System.Drawing.Size(159, 23);
             this.btnProfessionalBasicViewFull.TabIndex = 7;
@@ -1207,14 +1208,14 @@ namespace InformationManagementSystem
             this.dgvProfessionals.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvProfessionals.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvProfessionals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProfessionals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProfessionals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvProfessionals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvProfessionals.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1233,14 +1234,14 @@ namespace InformationManagementSystem
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15});
             this.dgvProfessionals.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProfessionals.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProfessionals.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvProfessionals.EnableHeadersVisualStyles = false;
             this.dgvProfessionals.Location = new System.Drawing.Point(16, 46);
             this.dgvProfessionals.Name = "dgvProfessionals";
@@ -1487,9 +1488,25 @@ namespace InformationManagementSystem
             // 
             // studentsToolStripMenuItem
             // 
+            this.studentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectedPrintToolStripMenuItem,
+            this.fullPrintToolStripMenuItem});
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.studentsToolStripMenuItem.Text = "Students";
+            // 
+            // selectedPrintToolStripMenuItem
+            // 
+            this.selectedPrintToolStripMenuItem.Name = "selectedPrintToolStripMenuItem";
+            this.selectedPrintToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.selectedPrintToolStripMenuItem.Text = "Selected Print";
+            // 
+            // fullPrintToolStripMenuItem
+            // 
+            this.fullPrintToolStripMenuItem.Name = "fullPrintToolStripMenuItem";
+            this.fullPrintToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.fullPrintToolStripMenuItem.Text = "Full Print";
+            this.fullPrintToolStripMenuItem.Click += new System.EventHandler(this.fullPrintToolStripMenuItem_Click);
             // 
             // associateStudentsToolStripMenuItem
             // 
@@ -1580,10 +1597,9 @@ namespace InformationManagementSystem
             // tsslRegularStudents
             // 
             this.tsslRegularStudents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslRegularStudents.Image = ((System.Drawing.Image)(resources.GetObject("tsslRegularStudents.Image")));
             this.tsslRegularStudents.Margin = new System.Windows.Forms.Padding(5, 3, 0, 2);
             this.tsslRegularStudents.Name = "tsslRegularStudents";
-            this.tsslRegularStudents.Size = new System.Drawing.Size(122, 17);
+            this.tsslRegularStudents.Size = new System.Drawing.Size(106, 17);
             this.tsslRegularStudents.Text = "Regular Students:";
             // 
             // tsslTotalStudents
@@ -1596,10 +1612,9 @@ namespace InformationManagementSystem
             // tsslAssociateStudents
             // 
             this.tsslAssociateStudents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslAssociateStudents.Image = ((System.Drawing.Image)(resources.GetObject("tsslAssociateStudents.Image")));
             this.tsslAssociateStudents.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.tsslAssociateStudents.Name = "tsslAssociateStudents";
-            this.tsslAssociateStudents.Size = new System.Drawing.Size(131, 17);
+            this.tsslAssociateStudents.Size = new System.Drawing.Size(115, 17);
             this.tsslAssociateStudents.Text = "Associate Students:";
             // 
             // tsslTotalAssociateStudents
@@ -1620,10 +1635,9 @@ namespace InformationManagementSystem
             // tsslProfessionals
             // 
             this.tsslProfessionals.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslProfessionals.Image = ((System.Drawing.Image)(resources.GetObject("tsslProfessionals.Image")));
             this.tsslProfessionals.Margin = new System.Windows.Forms.Padding(10, 3, 0, 2);
             this.tsslProfessionals.Name = "tsslProfessionals";
-            this.tsslProfessionals.Size = new System.Drawing.Size(98, 17);
+            this.tsslProfessionals.Size = new System.Drawing.Size(82, 17);
             this.tsslProfessionals.Text = "Professionals:";
             // 
             // tsslTotalProfessionals
@@ -1636,10 +1650,9 @@ namespace InformationManagementSystem
             // tsslProLifetime
             // 
             this.tsslProLifetime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslProLifetime.Image = ((System.Drawing.Image)(resources.GetObject("tsslProLifetime.Image")));
             this.tsslProLifetime.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.tsslProLifetime.Name = "tsslProLifetime";
-            this.tsslProLifetime.Size = new System.Drawing.Size(98, 17);
+            this.tsslProLifetime.Size = new System.Drawing.Size(82, 17);
             this.tsslProLifetime.Text = "Pro. Lifetime:";
             // 
             // tsslTotalProLifetime
@@ -1652,10 +1665,9 @@ namespace InformationManagementSystem
             // tsslProTransferee
             // 
             this.tsslProTransferee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslProTransferee.Image = ((System.Drawing.Image)(resources.GetObject("tsslProTransferee.Image")));
             this.tsslProTransferee.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.tsslProTransferee.Name = "tsslProTransferee";
-            this.tsslProTransferee.Size = new System.Drawing.Size(111, 17);
+            this.tsslProTransferee.Size = new System.Drawing.Size(95, 17);
             this.tsslProTransferee.Text = "Pro. Transferee:";
             // 
             // tsslTotalTransferee
@@ -1939,6 +1951,8 @@ namespace InformationManagementSystem
         private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociateProLifetime;
         private System.Windows.Forms.ToolStripStatusLabel tsslAssociateProTransferee;
         private System.Windows.Forms.ToolStripStatusLabel tsslTotalAssociateProTransferee;
+        private System.Windows.Forms.ToolStripMenuItem selectedPrintToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fullPrintToolStripMenuItem;
     }
 }
 

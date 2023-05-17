@@ -316,10 +316,11 @@ namespace InformationManagementSystem
 
                     MessageBox.Show("New record has been added");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     _connection.Close();
-                    MessageBox.Show("Connection Failed");
+                    MessageBox.Show("Failed to add new student error " + ex.Message);
+                    throw;
                 }
             }
         }

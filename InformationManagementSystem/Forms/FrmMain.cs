@@ -1609,7 +1609,12 @@ namespace InformationManagementSystem
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _login.Dispose();
+            //_login.Dispose();
+        }
+
+        private void fullPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _singleInstance.OpenForm(new FrmReportsViewer("STUDENTS LIST"));
         }
     }
 }

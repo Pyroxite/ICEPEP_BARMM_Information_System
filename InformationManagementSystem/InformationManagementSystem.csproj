@@ -33,21 +33,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1576.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1576.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1576.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1576.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1576.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,111 +68,129 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoIncrementID.cs" />
-    <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="DirectoryHelper.cs" />
-    <Compile Include="FrmAbout.cs">
+    <Compile Include="Classes\AutoIncrementID.cs" />
+    <Compile Include="Classes\DatabaseHelper.cs" />
+    <Compile Include="Classes\DirectoryHelper.cs" />
+    <Compile Include="DataSets\ICEPEPDataSet.cs">
+      <DependentUpon>ICEPEPDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAbout.Designer.cs">
+    <Compile Include="Forms\FrmAbout.Designer.cs">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProCurrentEmployer.cs">
+    <Compile Include="Forms\FrmProCurrentEmployer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProCurrentEmployer.Designer.cs">
+    <Compile Include="Forms\FrmProCurrentEmployer.Designer.cs">
       <DependentUpon>FrmProCurrentEmployer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProJobTitle.cs">
+    <Compile Include="Forms\FrmProJobTitle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProJobTitle.Designer.cs">
+    <Compile Include="Forms\FrmProJobTitle.Designer.cs">
       <DependentUpon>FrmProJobTitle.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProSchoolTertiary.cs">
+    <Compile Include="Forms\FrmProSchoolTertiary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProSchoolTertiary.Designer.cs">
+    <Compile Include="Forms\FrmProSchoolTertiary.Designer.cs">
       <DependentUpon>FrmProSchoolTertiary.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProTertiary.cs">
+    <Compile Include="Forms\FrmProTertiary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProTertiary.Designer.cs">
+    <Compile Include="Forms\FrmProTertiary.Designer.cs">
       <DependentUpon>FrmProTertiary.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmStudentCurrentSchool.cs">
+    <Compile Include="Forms\FrmReportsViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmStudentCurrentSchool.Designer.cs">
+    <Compile Include="Forms\FrmReportsViewer.Designer.cs">
+      <DependentUpon>FrmReportsViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmStudentCurrentSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmStudentCurrentSchool.Designer.cs">
       <DependentUpon>FrmStudentCurrentSchool.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmLogin.cs">
+    <Compile Include="Forms\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLogin.Designer.cs">
+    <Compile Include="Forms\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmNewProfessional.cs">
+    <Compile Include="Forms\FrmNewProfessional.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmNewProfessional.Designer.cs">
+    <Compile Include="Forms\FrmNewProfessional.Designer.cs">
       <DependentUpon>FrmNewProfessional.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmNewStudent.cs">
+    <Compile Include="Forms\FrmNewStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmNewStudent.Designer.cs">
+    <Compile Include="Forms\FrmNewStudent.Designer.cs">
       <DependentUpon>FrmNewStudent.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmStudentSeniorHigh.cs">
+    <Compile Include="Forms\FrmStudentSeniorHigh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmStudentSeniorHigh.Designer.cs">
+    <Compile Include="Forms\FrmStudentSeniorHigh.Designer.cs">
       <DependentUpon>FrmStudentSeniorHigh.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="Forms\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
+    <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProfessionalExpirationDate.cs" />
+    <Compile Include="DataSets\ICEPEPDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICEPEPDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ProfessionalExpirationDate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleInstanceForm.cs" />
-    <Compile Include="StudentExpirationDate.cs" />
-    <EmbeddedResource Include="FrmAbout.resx">
+    <Compile Include="Classes\SingleInstanceForm.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Classes\StudentExpirationDate.cs" />
+    <EmbeddedResource Include="Forms\FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProCurrentEmployer.resx">
+    <EmbeddedResource Include="Forms\FrmProCurrentEmployer.resx">
       <DependentUpon>FrmProCurrentEmployer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProJobTitle.resx">
+    <EmbeddedResource Include="Forms\FrmProJobTitle.resx">
       <DependentUpon>FrmProJobTitle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProSchoolTertiary.resx">
+    <EmbeddedResource Include="Forms\FrmProSchoolTertiary.resx">
       <DependentUpon>FrmProSchoolTertiary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProTertiary.resx">
+    <EmbeddedResource Include="Forms\FrmProTertiary.resx">
       <DependentUpon>FrmProTertiary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStudentCurrentSchool.resx">
+    <EmbeddedResource Include="Forms\FrmReportsViewer.resx">
+      <DependentUpon>FrmReportsViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmStudentCurrentSchool.resx">
       <DependentUpon>FrmStudentCurrentSchool.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmLogin.resx">
+    <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNewProfessional.resx">
+    <EmbeddedResource Include="Forms\FrmNewProfessional.resx">
       <DependentUpon>FrmNewProfessional.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNewStudent.resx">
+    <EmbeddedResource Include="Forms\FrmNewStudent.resx">
       <DependentUpon>FrmNewStudent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStudentSeniorHigh.resx">
+    <EmbeddedResource Include="Forms\FrmStudentSeniorHigh.resx">
       <DependentUpon>FrmStudentSeniorHigh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMain.resx">
+    <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -176,6 +203,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\ReportStudents.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="DataSets\ICEPEPDataSet.xsc">
+      <DependentUpon>ICEPEPDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ICEPEPDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ICEPEPDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\ICEPEPDataSet.xss">
+      <DependentUpon>ICEPEPDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -194,6 +235,23 @@
     <Content Include="ICEPEP.accdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pictures\default.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
